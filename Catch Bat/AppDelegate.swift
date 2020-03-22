@@ -21,6 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelegate, NSMenuD
     @IBOutlet weak var WiFiNameMenu: NSView!
     @IBOutlet weak var WiFiStatusMenuItem: NSMenuItem!
     @IBOutlet weak var ToggleWiFiButton: NSMenuItem!
+    @IBOutlet weak var QuitButton: NSMenuItem!
     
     var statusBar:NSStatusItem!
     let WiFiPopup:NSAlert = NSAlert()
@@ -65,6 +66,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelegate, NSMenuD
             WiFiStatusMenuItem.title = "Wi-Fi: 开启"
             timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(tick), userInfo: nil, repeats: true)
         }
+    }
+    
+    @IBAction func Quit(_ sender: Any) {
+        exit(0)
     }
     
     @objc func tick() {
@@ -124,21 +129,21 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelegate, NSMenuD
     }
 
     func menuWillOpen(_ menu: NSMenu) {
-        if let event = NSApp.currentEvent {
+        if (NSApp.currentEvent?.modifierFlags.contains(.option))! {
             // 当按下 option 键显示特殊菜单
-            guard !event.modifierFlags.contains(.option) else {
-                print("Option")
-                return
-            }
+            print("Option")
+            buildOptionMenu()
+        } else {
+            buildNormalMenu()
         }
     }
     
     func buildNormalMenu() {
-        
+        QuitButton.isHidden = true
     }
     
     func buildOptionMenu() {
-        
+        QuitButton.isHidden = false
     }
     
     func controlTextDidChange(_ notification: Notification) {

@@ -14,6 +14,7 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Catch_Bat" customModuleProvider="target">
             <connections>
+                <outlet property="QuitButton" destination="MRT-Jg-L3o" id="lMQ-0f-WSG"/>
                 <outlet property="ToggleWiFiButton" destination="dAJ-Gg-1lJ" id="Ldq-ye-wAE"/>
                 <outlet property="WiFiName" destination="Y93-0A-sqy" id="5Av-G8-RxU"/>
                 <outlet property="WiFiNameMenu" destination="yrB-TL-66G" id="IXb-RS-XKh"/>
@@ -93,22 +94,22 @@
         </customView>
         <menu id="wfL-ce-HRz">
             <items>
-                <menuItem title="接口名称： en1" id="Gnv-iM-k4D">
+                <menuItem title="接口名称： en1" hidden="YES" id="Gnv-iM-k4D">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="地址： ac:e0:10:95:3e:35" id="Vz6-Km-aQ4">
+                <menuItem title="地址： ac:e0:10:95:3e:35" hidden="YES" id="Vz6-Km-aQ4">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="启用Wi-Fi记录" id="Bof-nW-eKj">
+                <menuItem title="启用Wi-Fi记录" hidden="YES" id="Bof-nW-eKj">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="创建诊断报告..." id="jp7-5s-unz">
+                <menuItem title="创建诊断报告..." hidden="YES" id="jp7-5s-unz">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="打开无线诊断..." id="sT1-Y2-yYe">
+                <menuItem title="打开无线诊断..." hidden="YES" id="sT1-Y2-yYe">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem isSeparatorItem="YES" id="PQP-Wg-tpZ" userLabel="Option Menu Separator"/>
+                <menuItem isSeparatorItem="YES" hidden="YES" id="PQP-Wg-tpZ" userLabel="Option Menu Separator"/>
                 <menuItem title="Wi-FI:  关闭" id="lPz-HI-M0h" userLabel="Wi-FI Status Menu Item">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
@@ -132,8 +133,11 @@
                 <menuItem title="打开网路偏好设置..." id="9B2-jd-NEb">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="退出HeliPort" id="MRT-Jg-L3o">
+                <menuItem title="放走Bat" hidden="YES" id="MRT-Jg-L3o">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="Quit:" target="Voe-Tx-rLC" id="uxw-pX-aXu"/>
+                    </connections>
                 </menuItem>
             </items>
             <point key="canvasLocation" x="-3821" y="-3463"/>
