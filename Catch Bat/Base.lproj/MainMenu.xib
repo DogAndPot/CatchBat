@@ -14,10 +14,12 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Catch_Bat" customModuleProvider="target">
             <connections>
+                <outlet property="ToggleWiFiButton" destination="dAJ-Gg-1lJ" id="Ldq-ye-wAE"/>
                 <outlet property="WiFiName" destination="Y93-0A-sqy" id="5Av-G8-RxU"/>
                 <outlet property="WiFiNameMenu" destination="yrB-TL-66G" id="IXb-RS-XKh"/>
                 <outlet property="WiFiPasswdField" destination="lYU-aY-5Ko" id="8Wm-X8-zDY"/>
                 <outlet property="WiFiPasswdField1" destination="CQb-Np-y6G" id="3Yi-mh-t1d"/>
+                <outlet property="WiFiStatusMenuItem" destination="lPz-HI-M0h" id="lE8-SF-1K4"/>
                 <outlet property="WiFiSubView" destination="iyG-QL-bac" id="IaT-MD-pJY"/>
                 <outlet property="isShowPasswd" destination="MhA-yt-cix" id="CgR-NB-uWg"/>
                 <outlet property="statusMenu" destination="wfL-ce-HRz" id="tkR-d4-Yqz"/>
@@ -107,11 +109,14 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="PQP-Wg-tpZ" userLabel="Option Menu Separator"/>
-                <menuItem title="Wi-FI:  开启" id="lPz-HI-M0h" userLabel="Wi-FI Status Menu Item">
+                <menuItem title="Wi-FI:  关闭" id="lPz-HI-M0h" userLabel="Wi-FI Status Menu Item">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="关闭Wi-Fi" state="on" id="dAJ-Gg-1lJ" userLabel="Toggle Wi-Fi Menu Item">
+                <menuItem title="开启Wi-Fi" id="dAJ-Gg-1lJ" userLabel="Toggle Wi-Fi Menu Item">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="ToggleWiFiStatus:" target="Voe-Tx-rLC" id="LIA-Na-wCV"/>
+                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="SGP-wQ-gqX" userLabel="Wi-Fi List Begin Separator"/>
                 <menuItem id="Y93-0A-sqy">
@@ -149,7 +154,7 @@
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k3L-tn-Mbq">
                     <rect key="frame" x="257" y="0.0" width="18" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AirPortInMenu4-1" id="uTK-vB-ahd"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AirPortInMenu4" id="uTK-vB-ahd"/>
                 </imageView>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mEu-oy-JgD">
                     <rect key="frame" x="3" y="0.0" width="18" height="18"/>
@@ -166,7 +171,7 @@
         </customView>
     </objects>
     <resources>
-        <image name="AirPortInMenu4-1" width="21" height="16"/>
+        <image name="AirPortInMenu4" width="21" height="16"/>
         <image name="NSLockLockedTemplate" width="10" height="14"/>
         <image name="NSMenuOnStateTemplate" width="12" height="12"/>
     </resources>
