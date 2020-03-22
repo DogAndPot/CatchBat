@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
+            <connections>
+                <outlet property="delegate" destination="Voe-Tx-rLC" id="GzC-gU-4Uq"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Catch_Bat" customModuleProvider="target">
+            <connections>
+                <outlet property="WiFiName" destination="Y93-0A-sqy" id="5Av-G8-RxU"/>
+                <outlet property="WiFiNameMenu" destination="yrB-TL-66G" id="IXb-RS-XKh"/>
+                <outlet property="WiFiPasswdField" destination="lYU-aY-5Ko" id="8Wm-X8-zDY"/>
+                <outlet property="WiFiPasswdField1" destination="CQb-Np-y6G" id="3Yi-mh-t1d"/>
+                <outlet property="WiFiSubView" destination="iyG-QL-bac" id="IaT-MD-pJY"/>
+                <outlet property="isShowPasswd" destination="MhA-yt-cix" id="CgR-NB-uWg"/>
+                <outlet property="statusMenu" destination="wfL-ce-HRz" id="tkR-d4-Yqz"/>
+            </connections>
+        </customObject>
+        <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+        <customView id="iyG-QL-bac" userLabel="WiFi Accessory View">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4aT-3U-JeS">
+                    <rect key="frame" x="-2" y="62" width="41" height="16"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="密码：" id="Zon-TO-OzN">
+                        <font key="font" usesAppearanceFont="YES"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <secureTextField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lYU-aY-5Ko" userLabel="WiFi Passwd Field">
+                    <rect key="frame" x="45" y="59" width="255" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="TY9-gC-YwV">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        <allowedInputSourceLocales>
+                            <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                        </allowedInputSourceLocales>
+                    </secureTextFieldCell>
+                    <connections>
+                        <outlet property="delegate" destination="Voe-Tx-rLC" id="aTo-VS-Rq5"/>
+                    </connections>
+                </secureTextField>
+                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CQb-Np-y6G" userLabel="WiFi Passwd Field">
+                    <rect key="frame" x="45" y="59" width="255" height="21"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="X7Q-Rs-3Ib">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        <allowedInputSourceLocales>
+                            <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                        </allowedInputSourceLocales>
+                    </textFieldCell>
+                    <connections>
+                        <outlet property="delegate" destination="Voe-Tx-rLC" id="qnu-Hb-wHW"/>
+                    </connections>
+                </textField>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MhA-yt-cix">
+                    <rect key="frame" x="43" y="35" width="76" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="check" title="显示密码" bezelStyle="regularSquare" imagePosition="left" inset="2" id="aBz-4M-e0g">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="ShowPasswd:" target="Voe-Tx-rLC" id="2Bc-W6-TPr"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="odf-KW-FnV">
+                    <rect key="frame" x="43" y="15" width="89" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="check" title="记住该网络" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="T4g-QW-UxQ">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+            </subviews>
+            <point key="canvasLocation" x="-4127" y="-3550"/>
+        </customView>
+        <menu id="wfL-ce-HRz">
+            <items>
+                <menuItem title="接口名称： en1" id="Gnv-iM-k4D">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="地址： ac:e0:10:95:3e:35" id="Vz6-Km-aQ4">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="启用Wi-Fi记录" id="Bof-nW-eKj">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="创建诊断报告..." id="jp7-5s-unz">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="打开无线诊断..." id="sT1-Y2-yYe">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="PQP-Wg-tpZ" userLabel="Option Menu Separator"/>
+                <menuItem title="Wi-FI:  开启" id="lPz-HI-M0h" userLabel="Wi-FI Status Menu Item">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="关闭Wi-Fi" state="on" id="dAJ-Gg-1lJ" userLabel="Toggle Wi-Fi Menu Item">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="SGP-wQ-gqX" userLabel="Wi-Fi List Begin Separator"/>
+                <menuItem id="Y93-0A-sqy">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="1FK-Bs-nyc" userLabel="Wi-Fi List End Separator"/>
+                <menuItem title="加入其他网络..." id="S3h-zP-dT4" userLabel="Join Other Wi-Fi">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="创建网络..." id="kRm-gO-LuG" userLabel="Build Networks">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="打开网路偏好设置..." id="9B2-jd-NEb">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+                <menuItem title="退出HeliPort" id="MRT-Jg-L3o">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="-3821" y="-3463"/>
+        </menu>
+        <customView id="yrB-TL-66G" userLabel="WiFi Name Menu Item View">
+            <rect key="frame" x="0.0" y="0.0" width="285" height="18"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LPB-j5-8So">
+                    <rect key="frame" x="19" y="0.0" width="206" height="18"/>
+                    <autoresizingMask key="autoresizingMask"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Catch Bat" id="0mF-3y-Rdp">
+                        <font key="font" metaFont="menu" size="14"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k3L-tn-Mbq">
+                    <rect key="frame" x="257" y="0.0" width="18" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="AirPortInMenu4-1" id="uTK-vB-ahd"/>
+                </imageView>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mEu-oy-JgD">
+                    <rect key="frame" x="3" y="0.0" width="18" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSMenuOnStateTemplate" id="dsc-Xj-RyT"/>
+                </imageView>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hlQ-dG-mc4">
+                    <rect key="frame" x="231" y="0.0" width="18" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSLockLockedTemplate" id="6i8-vP-J9J"/>
+                </imageView>
+            </subviews>
+            <point key="canvasLocation" x="-4135.5" y="-3418"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="AirPortInMenu4-1" width="21" height="16"/>
+        <image name="NSLockLockedTemplate" width="10" height="14"/>
+        <image name="NSMenuOnStateTemplate" width="12" height="12"/>
+    </resources>
+</document>
