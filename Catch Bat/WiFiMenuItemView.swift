@@ -9,7 +9,6 @@
 import Foundation
 import Cocoa
 
-
 class wifiMenuItemView: NSView {
     var menuItemView: NSVisualEffectView?//NSView?
     var statusImage: NSImageView?
@@ -21,8 +20,10 @@ class wifiMenuItemView: NSView {
         super.init(frame: frame)
         menuItemView = NSVisualEffectView(frame: NSRect(x: 0, y: 0, width: 285, height: 18))
         menuItemView?.addTrackingRect(menuItemView!.bounds, owner: menuItemView, userData: nil, assumeInside: false)
+        menuItemView?.state = .active
         menuItemView?.material = .popover
         menuItemView?.isEmphasized = false
+        menuItemView?.blendingMode = .behindWindow
         
         statusImage = NSImageView(frame: NSRect(x: 3, y: 0, width: 18, height: 18))
         statusImage?.image = NSImage.init(named: "NSMenuOnStateTemplate")
@@ -68,24 +69,23 @@ class wifiMenuItemView: NSView {
         ssid?.textColor = NSColor(deviceRed: 0 / 255.0, green: 0 / 255.0, blue: 0 / 255.0, alpha: 1.0)
     }
     
-    override func mouseDown(with event: NSEvent) {
-        print("Mouse Down")
-        menuItemView?.material = .popover
-        menuItemView?.isEmphasized = false
-        ssid?.textColor = NSColor(deviceRed: 0 / 255.0, green: 0 / 255.0, blue: 0 / 255.0, alpha: 1.0)
-    }
-    
     override func mouseUp(with event: NSEvent) {
         print("Mouse Up")
+        //menuItemView?.material = .popover
+        //menuItemView?.isEmphasized = false
+        //ssid?.textColor = NSColor(deviceRed: 0 / 255.0, green: 0 / 255.0, blue: 0 / 255.0, alpha: 1.0)
+        //sleep(1)
+        /*
         menuItemView?.material = .selection
         menuItemView?.isEmphasized = true
         ssid?.textColor = NSColor(deviceRed: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+ */
     }
     
     override func draw(_ Rect: NSRect) {
-        //NSColor.blue.set()
+        //NSColor.selectedMenuItemColor.set()
         //Rect.fill()
-        
+        //menuItemView?.isHidden = !(enclosingMenuItem?.isHighlighted ?? false)
     }
     
     required init?(coder: NSCoder) {
