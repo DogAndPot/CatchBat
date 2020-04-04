@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -14,12 +14,17 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Catch_Bat" customModuleProvider="target">
             <connections>
+                <outlet property="MacAddress" destination="Vz6-Km-aQ4" id="dqR-yu-Bc0"/>
+                <outlet property="PortName" destination="Gnv-iM-k4D" id="B9i-N6-Rtu"/>
                 <outlet property="QuitButton" destination="MRT-Jg-L3o" id="lMQ-0f-WSG"/>
                 <outlet property="ToggleWiFiButton" destination="dAJ-Gg-1lJ" id="Ldq-ye-wAE"/>
-                <outlet property="WiFiName" destination="Y93-0A-sqy" id="5Av-G8-RxU"/>
+                <outlet property="WiFiConnected" destination="mEu-oy-JgD" id="kvt-up-Bwo"/>
+                <outlet property="WiFiEncryption" destination="hlQ-dG-mc4" id="GKn-nE-brX"/>
                 <outlet property="WiFiNameMenu" destination="yrB-TL-66G" id="IXb-RS-XKh"/>
                 <outlet property="WiFiPasswdField" destination="lYU-aY-5Ko" id="8Wm-X8-zDY"/>
                 <outlet property="WiFiPasswdField1" destination="CQb-Np-y6G" id="3Yi-mh-t1d"/>
+                <outlet property="WiFiSSID" destination="LPB-j5-8So" id="sKQ-f5-zvF"/>
+                <outlet property="WiFiSignal" destination="k3L-tn-Mbq" id="bJx-b5-cvL"/>
                 <outlet property="WiFiStatusMenuItem" destination="lPz-HI-M0h" id="lE8-SF-1K4"/>
                 <outlet property="WiFiSubView" destination="iyG-QL-bac" id="IaT-MD-pJY"/>
                 <outlet property="isShowPasswd" destination="MhA-yt-cix" id="CgR-NB-uWg"/>
@@ -92,7 +97,7 @@
             </subviews>
             <point key="canvasLocation" x="-4127" y="-3550"/>
         </customView>
-        <menu id="wfL-ce-HRz">
+        <menu autoenablesItems="NO" id="wfL-ce-HRz">
             <items>
                 <menuItem title="接口名称： en1" hidden="YES" id="Gnv-iM-k4D">
                     <modifierMask key="keyEquivalentModifierMask"/>
@@ -113,26 +118,13 @@
                 <menuItem title="Wi-FI:  关闭" id="lPz-HI-M0h" userLabel="Wi-FI Status Menu Item">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="开启Wi-Fi" id="dAJ-Gg-1lJ" userLabel="Toggle Wi-Fi Menu Item">
+                <menuItem title="开启Wi-Fi" state="on" id="dAJ-Gg-1lJ" userLabel="Toggle Wi-Fi Menu Item">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="ToggleWiFiStatus:" target="Voe-Tx-rLC" id="LIA-Na-wCV"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="SGP-wQ-gqX" userLabel="Wi-Fi List Begin Separator"/>
-                <menuItem id="Y93-0A-sqy">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="1FK-Bs-nyc" userLabel="Wi-Fi List End Separator"/>
-                <menuItem title="加入其他网络..." id="S3h-zP-dT4" userLabel="Join Other Wi-Fi">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="创建网络..." id="kRm-gO-LuG" userLabel="Build Networks">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="打开网路偏好设置..." id="9B2-jd-NEb">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
                 <menuItem title="放走Bat" hidden="YES" id="MRT-Jg-L3o">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -146,6 +138,14 @@
             <rect key="frame" x="0.0" y="0.0" width="285" height="18"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
+                <button fixedFrame="YES" springLoaded="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NBz-zz-s1D">
+                    <rect key="frame" x="0.0" y="0.0" width="285" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Qkb-QQ-v9c">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LPB-j5-8So">
                     <rect key="frame" x="19" y="0.0" width="206" height="18"/>
                     <autoresizingMask key="autoresizingMask"/>

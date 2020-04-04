@@ -17,11 +17,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelegate, NSMenuD
     @IBOutlet weak var WiFiPasswdField: NSSecureTextField!
     @IBOutlet weak var WiFiPasswdField1: NSTextField!
     @IBOutlet weak var isShowPasswd: NSButton!
-    @IBOutlet weak var WiFiName: NSMenuItem!
     @IBOutlet weak var WiFiNameMenu: NSView!
     @IBOutlet weak var WiFiStatusMenuItem: NSMenuItem!
     @IBOutlet weak var ToggleWiFiButton: NSMenuItem!
     @IBOutlet weak var QuitButton: NSMenuItem!
+    @IBOutlet weak var PortName: NSMenuItem!
+    @IBOutlet weak var MacAddress: NSMenuItem!
+    @IBOutlet weak var WiFiSSID: NSTextField!
+    @IBOutlet weak var WiFiSignal: NSImageView!
+    @IBOutlet weak var WiFiConnected: NSImageView!
+    @IBOutlet weak var WiFiEncryption: NSImageView!
+    @IBOutlet weak var WiFiList: NSTableView!
     
     var statusBar:NSStatusItem!
     let WiFiPopup:NSAlert = NSAlert()
@@ -29,14 +35,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelegate, NSMenuD
     var count:Int = 8
     var WiFiStatus:Bool = false
     var timer = Timer.init()
+    var wifiList: WiFiListView?
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        
         WiFiPasswdField.isHidden = false
         WiFiPasswdField1.isHidden = true
         
-        WiFiName.target = self
-        WiFiName.view = WiFiNameMenu
+        wifiList = WiFiListView(frame: NSRect(x: 0, y: 0, width: 285, height: 60))
+        
         
         statusMenu.minimumWidth = CGFloat(285.0)
         statusMenu.title = ""
@@ -46,8 +54,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelegate, NSMenuD
         statusBar.menu = statusMenu
         statusBar.menu?.delegate = self
         
-        //WiFiPop()
-        
+        addWiFi(ssid: "Catch Bat", connoeted: true, Encrypted: true)
+        statusMenu.addItem(NSMenuItem.separator())
+        statusMenu.addItem(withTitle: "加入其他网络...", action: #selector(clickMenuItem(_:)), keyEquivalent: "")
+        statusMenu.addItem(withTitle: "创建网络...", action: #selector(clickMenuItem(_:)), keyEquivalent: "")
+        statusMenu.addItem(withTitle: "打开网络偏好设置...", action: #selector(clickMenuItem(_:)), keyEquivalent: "")
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -98,6 +109,25 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelegate, NSMenuD
         }
     }
     
+    func addWiFi(ssid:String, connoeted:Bool,Encrypted:Bool) {
+        WiFiConnected.isHidden = true
+        WiFiEncryption.isHidden = true
+        WiFiSSID.stringValue = ssid
+        if connoeted {
+            WiFiConnected.isHidden = false
+        }
+        if Encrypted {
+            WiFiEncryption.isHidden = false
+        }
+        statusMenu.addItem(withTitle: ssid, action: #selector(clickMenuItem(_:)), keyEquivalent: "")
+        statusMenu.item(withTitle: ssid)?.view = wifiMenuItemView(frame: NSRect(x: 0, y: 0, width: 285, height: 20))//wifiList//WiFiNameMenu
+        statusMenu.item(withTitle: ssid)?.isEnabled = true
+    }
+    
+    @objc func clickMenuItem(_ sender:NSMenuItem){
+        print(sender.title)
+    }
+    
     func WiFiPop() {
         WiFiPopup.icon = NSImage.init(named: "WiFi")
         WiFiPopup.messageText = "Wi-Fi网络“Catch Bat”需要WPA2密码。"
@@ -113,14 +143,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelegate, NSMenuD
     
     @IBAction func ShowPasswd(_ sender: Any) {
         if (sender as! NSButton).state.rawValue == 1 {
-            print(0)
             WiFiPasswdField1.stringValue = WiFiPasswdField.stringValue
             WiFiPasswdField.isHidden = true
             WiFiPasswdField1.isHidden = false
             WiFiPasswdField1.becomeFirstResponder()
         }
         if (sender as! NSButton).state.rawValue == 0 {
-            print(1)
             WiFiPasswdField.stringValue = WiFiPasswdField1.stringValue
             WiFiPasswdField1.isHidden = true
             WiFiPasswdField.isHidden = false
@@ -140,10 +168,22 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelegate, NSMenuD
     
     func buildNormalMenu() {
         QuitButton.isHidden = true
+        PortName.isHidden = true
+        MacAddress.isHidden = true
     }
     
     func buildOptionMenu() {
         QuitButton.isHidden = false
+        PortName.isHidden = false
+        MacAddress.isHidden = false
+    }
+    
+    var data: [WiFi] = Array()
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return data.count
+    }
+    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        return data[row]
     }
     
     func controlTextDidChange(_ notification: Notification) {
@@ -162,4 +202,3 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelegate, NSMenuD
         }
     }
 }
-
