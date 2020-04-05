@@ -101,6 +101,7 @@ class wifiMenuItemView: NSView {
             normalColor = NSColor(deviceRed: 0.0 / 255.0, green: 0.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0)
         }
         if !enclosingMenuItem!.isHighlighted {
+            ssid?.textColor = normalColor
             statusImage?.contentTintColor = normalColor
             lockImage?.contentTintColor = normalColor
             signalImage?.contentTintColor = normalColor
