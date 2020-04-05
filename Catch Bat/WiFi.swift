@@ -8,7 +8,16 @@
 
 import Foundation
 
-class WiFi: NSObject {
-    var ssid:String?
-    var connected:Bool?
+class WiFi {
+    static var List = [WiFi]()
+    
+    class func addWiFI(_ ssid: String, _ connected: Bool, _ encrypted: Bool, _ signal: Int) {
+        var wifi = WiFi()
+        //WiFi.ssid =
+        WiFi.List.append(wifi)
+    }
+    
+    class func count() {
+        
+    }
 }

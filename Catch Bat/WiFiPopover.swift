@@ -102,9 +102,9 @@ class WiFiPopoverSubview: NSView, NSTextFieldDelegate{
             WiFiPopoverSubview.passwdInputBox?.stringValue = WiFiPopoverSubview.passwdInputBox1?.stringValue as! String
         }
         if (WiFiPopoverSubview.passwdInputBox1?.stringValue.count)! < 8 && (WiFiPopoverSubview.passwdInputBox?.stringValue.count)! < 8 {
-            AppDelegate.WiFiPopup.buttons[0].isEnabled = false
+            WiFiPopup.buttons[0].isEnabled = false
         } else {
-            AppDelegate.WiFiPopup.buttons[0].isEnabled = true
+            WiFiPopup.buttons[0].isEnabled = true
         }
         if (WiFiPopoverSubview.passwdInputBox1?.stringValue.count)! > 64 {
             let index = WiFiPopoverSubview.passwdInputBox1?.stringValue.index((WiFiPopoverSubview.passwdInputBox1?.stringValue.startIndex)!, offsetBy: 64)

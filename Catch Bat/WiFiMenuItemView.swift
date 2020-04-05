@@ -90,6 +90,7 @@ class wifiMenuItemView: NSView {
     
     override func mouseUp(with event: NSEvent) {
         print("Mouse Up")
+        Functions.WiFiPop()
     }
     
     override func draw(_ Rect: NSRect) {
