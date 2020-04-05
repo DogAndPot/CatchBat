@@ -9,14 +9,10 @@
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelegate, NSMenuDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var statusMenu: NSMenu!
-    @IBOutlet weak var WiFiSubView: NSView!
-    @IBOutlet weak var WiFiPasswdField: NSSecureTextField!
-    @IBOutlet weak var WiFiPasswdField1: NSTextField!
-    @IBOutlet weak var isShowPasswd: NSButton!
     @IBOutlet weak var WiFiNameMenu: NSView!
     @IBOutlet weak var WiFiStatusMenuItem: NSMenuItem!
     @IBOutlet weak var ToggleWiFiButton: NSMenuItem!
@@ -40,9 +36,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelegate, NSMenuD
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         WiFiPop()
-        
-        WiFiPasswdField.isHidden = false
-        WiFiPasswdField1.isHidden = true
         
         wifiList = WiFiListView(frame: NSRect(x: 0, y: 0, width: 285, height: 60))
         
@@ -141,21 +134,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelegate, NSMenuD
         AppDelegate.WiFiPopup.window.initialFirstResponder = WiFiPopoverSubview.passwdInputBox1 //WiFiPasswdField
         AppDelegate.WiFiPopup.runModal()
     }
-    
-    @IBAction func ShowPasswd(_ sender: Any) {
-        if (sender as! NSButton).state.rawValue == 1 {
-            WiFiPasswdField1.stringValue = WiFiPasswdField.stringValue
-            WiFiPasswdField.isHidden = true
-            WiFiPasswdField1.isHidden = false
-            WiFiPasswdField1.becomeFirstResponder()
-        }
-        if (sender as! NSButton).state.rawValue == 0 {
-            WiFiPasswdField.stringValue = WiFiPasswdField1.stringValue
-            WiFiPasswdField1.isHidden = true
-            WiFiPasswdField.isHidden = false
-            WiFiPasswdField.becomeFirstResponder()
-        }
-    }
 
     func menuWillOpen(_ menu: NSMenu) {
         if (NSApp.currentEvent?.modifierFlags.contains(.option))! {
@@ -185,21 +163,5 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelegate, NSMenuD
     }
     func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
         return data[row]
-    }
-    
-    func controlTextDidChange(_ notification: Notification) {
-        if WiFiPasswdField.stringValue.count < 8 && WiFiPasswdField1.stringValue.count < 8 {
-            AppDelegate.WiFiPopup.buttons[0].isEnabled = false
-        } else {
-            AppDelegate.WiFiPopup.buttons[0].isEnabled = true
-        }
-        if WiFiPasswdField.stringValue.count > 64 {
-            let index = WiFiPasswdField.stringValue.index(WiFiPasswdField.stringValue.startIndex, offsetBy: 64)
-            WiFiPasswdField.stringValue = String(WiFiPasswdField.stringValue[..<index])
-        }
-        if WiFiPasswdField1.stringValue.count > 64 {
-            let index = WiFiPasswdField1.stringValue.index(WiFiPasswdField1.stringValue.startIndex, offsetBy: 64)
-            WiFiPasswdField1.stringValue = String(WiFiPasswdField1.stringValue[..<index])
-        }
     }
 }

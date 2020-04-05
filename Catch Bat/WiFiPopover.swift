@@ -13,6 +13,7 @@ class WiFiPopoverSubview: NSView, NSTextFieldDelegate{
     var view: NSView?
     var passwdLabel: NSTextView?
     static var passwdInputBox: NSTextField?
+    var passwdInputBoxCell: NSTextFieldCell?
     static var passwdInputBox1: NSSecureTextField?
     var isShowPasswd: NSButton?
     var isSave:NSButton?
@@ -22,6 +23,7 @@ class WiFiPopoverSubview: NSView, NSTextFieldDelegate{
         view = NSView(frame: NSRect(x: 0, y: 0, width: 300, height: 80))
         passwdLabel = NSTextView(frame: NSRect(x: 0, y: 59, width: 100, height: 21))
         WiFiPopoverSubview.passwdInputBox = NSTextField(frame: NSRect(x: 45, y: 59, width: 255, height: 21))
+        passwdInputBoxCell = NSTextFieldCell.init()
         WiFiPopoverSubview.passwdInputBox1 = NSSecureTextField(frame: NSRect(x: 45, y: 59, width: 255, height: 21))
         isShowPasswd = NSButton(frame: NSRect(x: 43, y: 35, width: 100, height: 18))
         isSave = NSButton(frame: NSRect(x: 43, y: 15, width: 100, height: 18))
@@ -33,6 +35,9 @@ class WiFiPopoverSubview: NSView, NSTextFieldDelegate{
         passwdLabel?.font = NSFont.systemFont(ofSize: 13)
         view?.addSubview(passwdLabel!)
         
+        WiFiPopoverSubview.passwdInputBox?.cell = passwdInputBoxCell
+        passwdInputBoxCell?.allowedInputSourceLocales = [NSAllRomanInputSourcesLocaleIdentifier]
+        passwdInputBoxCell?.isBordered = true
         WiFiPopoverSubview.passwdInputBox?.stringValue = ""
         WiFiPopoverSubview.passwdInputBox?.drawsBackground = true
         WiFiPopoverSubview.passwdInputBox?.isEditable = true
@@ -40,7 +45,7 @@ class WiFiPopoverSubview: NSView, NSTextFieldDelegate{
         WiFiPopoverSubview.passwdInputBox?.font = NSFont.systemFont(ofSize: 13)
         WiFiPopoverSubview.passwdInputBox?.delegate = self
         WiFiPopoverSubview.passwdInputBox?.isHidden = true
-        //WiFiPopoverSubview.passwdInputBox?.
+        //passwdInputBoxCell?.drawsBackground = true
         view?.addSubview(WiFiPopoverSubview.passwdInputBox!)
         
         WiFiPopoverSubview.passwdInputBox1?.stringValue = ""
@@ -73,12 +78,16 @@ class WiFiPopoverSubview: NSView, NSTextFieldDelegate{
             WiFiPopoverSubview.passwdInputBox?.isHidden = true
             WiFiPopoverSubview.passwdInputBox1?.isHidden = false
             WiFiPopoverSubview.passwdInputBox1?.becomeFirstResponder()
+            WiFiPopoverSubview.passwdInputBox1?.selectText(self)
+            WiFiPopoverSubview.passwdInputBox1?.currentEditor()?.selectedRange = NSRange(location: "\(WiFiPopoverSubview.passwdInputBox1)".count, length: 0)
         }
         if isShowPasswd?.state.rawValue == 1 {
             WiFiPopoverSubview.passwdInputBox?.stringValue = WiFiPopoverSubview.passwdInputBox1?.stringValue as! String
             WiFiPopoverSubview.passwdInputBox?.isHidden = false
             WiFiPopoverSubview.passwdInputBox1?.isHidden = true
             WiFiPopoverSubview.passwdInputBox?.becomeFirstResponder()
+            WiFiPopoverSubview.passwdInputBox?.selectText(self)
+            WiFiPopoverSubview.passwdInputBox?.currentEditor()?.selectedRange = NSRange(location: "\(WiFiPopoverSubview.passwdInputBox)".count, length: 0)
         }
     }
     
@@ -87,7 +96,11 @@ class WiFiPopoverSubview: NSView, NSTextFieldDelegate{
     }
     
     func controlTextDidChange(_ obj: Notification) {
-        print(1)
+        if WiFiPopoverSubview.passwdInputBox?.isHidden == false {
+            WiFiPopoverSubview.passwdInputBox1?.stringValue = WiFiPopoverSubview.passwdInputBox?.stringValue as! String
+        } else {
+            WiFiPopoverSubview.passwdInputBox?.stringValue = WiFiPopoverSubview.passwdInputBox1?.stringValue as! String
+        }
         if (WiFiPopoverSubview.passwdInputBox1?.stringValue.count)! < 8 && (WiFiPopoverSubview.passwdInputBox?.stringValue.count)! < 8 {
             AppDelegate.WiFiPopup.buttons[0].isEnabled = false
         } else {

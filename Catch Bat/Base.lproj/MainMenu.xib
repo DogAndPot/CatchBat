@@ -21,82 +21,13 @@
                 <outlet property="WiFiConnected" destination="mEu-oy-JgD" id="kvt-up-Bwo"/>
                 <outlet property="WiFiEncryption" destination="hlQ-dG-mc4" id="GKn-nE-brX"/>
                 <outlet property="WiFiNameMenu" destination="yrB-TL-66G" id="IXb-RS-XKh"/>
-                <outlet property="WiFiPasswdField" destination="lYU-aY-5Ko" id="8Wm-X8-zDY"/>
-                <outlet property="WiFiPasswdField1" destination="CQb-Np-y6G" id="3Yi-mh-t1d"/>
                 <outlet property="WiFiSSID" destination="LPB-j5-8So" id="sKQ-f5-zvF"/>
                 <outlet property="WiFiSignal" destination="k3L-tn-Mbq" id="bJx-b5-cvL"/>
                 <outlet property="WiFiStatusMenuItem" destination="lPz-HI-M0h" id="lE8-SF-1K4"/>
-                <outlet property="WiFiSubView" destination="iyG-QL-bac" id="IaT-MD-pJY"/>
-                <outlet property="isShowPasswd" destination="MhA-yt-cix" id="CgR-NB-uWg"/>
                 <outlet property="statusMenu" destination="wfL-ce-HRz" id="tkR-d4-Yqz"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
-        <customView id="iyG-QL-bac" userLabel="WiFi Accessory View">
-            <rect key="frame" x="0.0" y="0.0" width="300" height="80"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <subviews>
-                <secureTextField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lYU-aY-5Ko" userLabel="WiFi Passwd Field">
-                    <rect key="frame" x="45" y="59" width="255" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="TY9-gC-YwV">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        <allowedInputSourceLocales>
-                            <string>NSAllRomanInputSourcesLocaleIdentifier</string>
-                        </allowedInputSourceLocales>
-                    </secureTextFieldCell>
-                    <connections>
-                        <outlet property="delegate" destination="Voe-Tx-rLC" id="aTo-VS-Rq5"/>
-                    </connections>
-                </secureTextField>
-                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CQb-Np-y6G" userLabel="WiFi Passwd Field">
-                    <rect key="frame" x="45" y="59" width="255" height="21"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="X7Q-Rs-3Ib">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        <allowedInputSourceLocales>
-                            <string>NSAllRomanInputSourcesLocaleIdentifier</string>
-                        </allowedInputSourceLocales>
-                    </textFieldCell>
-                    <connections>
-                        <outlet property="delegate" destination="Voe-Tx-rLC" id="qnu-Hb-wHW"/>
-                    </connections>
-                </textField>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MhA-yt-cix">
-                    <rect key="frame" x="43" y="35" width="76" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="显示密码" bezelStyle="regularSquare" imagePosition="left" inset="2" id="aBz-4M-e0g">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="ShowPasswd:" target="Voe-Tx-rLC" id="2Bc-W6-TPr"/>
-                    </connections>
-                </button>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="odf-KW-FnV">
-                    <rect key="frame" x="43" y="15" width="89" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="记住该网络" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="T4g-QW-UxQ">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                </button>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4aT-3U-JeS">
-                    <rect key="frame" x="-2" y="62" width="41" height="16"/>
-                    <autoresizingMask key="autoresizingMask"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="密码：" id="Zon-TO-OzN">
-                        <font key="font" usesAppearanceFont="YES"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-            </subviews>
-            <point key="canvasLocation" x="-4127" y="-3550"/>
-        </customView>
         <menu autoenablesItems="NO" id="wfL-ce-HRz">
             <items>
                 <menuItem title="接口名称： en1" hidden="YES" id="Gnv-iM-k4D">
