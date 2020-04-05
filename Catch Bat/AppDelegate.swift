@@ -31,14 +31,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     var count:Int = 8
     var WiFiStatus:Bool = false
     var timer = Timer.init()
-    var wifiList: WiFiListView?
+
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
-        WiFiPop()
-        
-        wifiList = WiFiListView(frame: NSRect(x: 0, y: 0, width: 285, height: 60))
-        
+        //WiFiPop()
         
         statusMenu.minimumWidth = CGFloat(285.0)
         statusMenu.title = ""
@@ -155,13 +152,5 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         QuitButton.isHidden = false
         PortName.isHidden = false
         MacAddress.isHidden = false
-    }
-    
-    var data: [WiFi] = Array()
-    func numberOfRows(in tableView: NSTableView) -> Int {
-        return data.count
-    }
-    func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-        return data[row]
     }
 }
