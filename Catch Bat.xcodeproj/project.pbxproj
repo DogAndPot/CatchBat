@@ -10,6 +10,7 @@
 		BC83AD2E2428FF7400DF6DFD /* WiFi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC83AD2D2428FF7400DF6DFD /* WiFi.swift */; };
 		BC83AD3024293B6100DF6DFD /* WiFiListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC83AD2F24293B6100DF6DFD /* WiFiListView.swift */; };
 		BCA4DFA724385F73002A862A /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA4DFA624385F73002A862A /* KeychainManager.swift */; };
+		BCA4DFAB2438CF25002A862A /* WiFiPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCA4DFAA2438CF25002A862A /* WiFiPopover.swift */; };
 		BCCB2AA4243708090005BB82 /* WiFiMenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCCB2AA3243708090005BB82 /* WiFiMenuItemView.swift */; };
 		BCFA32EB2424D2BE00E23603 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFA32EA2424D2BE00E23603 /* AppDelegate.swift */; };
 		BCFA32ED2424D2BF00E23603 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCFA32EC2424D2BF00E23603 /* Assets.xcassets */; };
@@ -20,7 +21,8 @@
 		BC83AD2D2428FF7400DF6DFD /* WiFi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFi.swift; sourceTree = "<group>"; };
 		BC83AD2F24293B6100DF6DFD /* WiFiListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiListView.swift; sourceTree = "<group>"; };
 		BCA4DFA624385F73002A862A /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
-		BCCB2AA3243708090005BB82 /* WiFiMenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiMenuItemView.swift; sourceTree = "<group>"; };
+		BCA4DFAA2438CF25002A862A /* WiFiPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiPopover.swift; sourceTree = "<group>"; };
+		BCCB2AA3243708090005BB82 /* WiFiMenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiMenuItemView.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		BCFA32E72424D2BE00E23603 /* Catch Bat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Catch Bat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCFA32EA2424D2BE00E23603 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BCFA32EC2424D2BF00E23603 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 			isa = PBXGroup;
 			children = (
 				BCFA32EA2424D2BE00E23603 /* AppDelegate.swift */,
+				BCA4DFAA2438CF25002A862A /* WiFiPopover.swift */,
 				BCFA32EC2424D2BF00E23603 /* Assets.xcassets */,
 				BCFA32EE2424D2BF00E23603 /* MainMenu.xib */,
 				BC83AD2F24293B6100DF6DFD /* WiFiListView.swift */,
@@ -142,6 +145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCA4DFAB2438CF25002A862A /* WiFiPopover.swift in Sources */,
 				BC83AD2E2428FF7400DF6DFD /* WiFi.swift in Sources */,
 				BC83AD3024293B6100DF6DFD /* WiFiListView.swift in Sources */,
 				BCFA32EB2424D2BE00E23603 /* AppDelegate.swift in Sources */,

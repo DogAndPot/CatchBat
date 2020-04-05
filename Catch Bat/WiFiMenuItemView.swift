@@ -15,9 +15,11 @@ class wifiMenuItemView: NSView {
     var ssid: NSTextView?
     var lockImage: NSImageView?
     var signalImage: NSImageView?
+    var btn1: NSButton?
     
     override init(frame: NSRect) {
         super.init(frame: frame)
+        
         menuItemView = NSVisualEffectView(frame: NSRect(x: 0, y: 0, width: 285, height: 18))
         menuItemView?.addTrackingRect(menuItemView!.bounds, owner: menuItemView, userData: nil, assumeInside: false)
         menuItemView?.state = .active
@@ -25,9 +27,14 @@ class wifiMenuItemView: NSView {
         menuItemView?.isEmphasized = false
         menuItemView?.blendingMode = .behindWindow
         
+        btn1 = NSButton(frame: NSRect(x: 0, y: 0, width: 18, height: 18))
+        btn1?.setButtonType(.switch)
+        menuItemView?.addSubview(btn1!)
+        
         statusImage = NSImageView(frame: NSRect(x: 3, y: 0, width: 18, height: 18))
         statusImage?.image = NSImage.init(named: "NSMenuOnStateTemplate")
         statusImage?.image?.isTemplate = true
+        //statusImage?.imageFrameStyle = NSImageView.FrameStyle.button
         menuItemView?.addSubview(statusImage!)
         
         ssid = NSTextView(frame: NSRect(x: 18, y: 0, width: 206, height: 18))
@@ -59,14 +66,14 @@ class wifiMenuItemView: NSView {
         print("Mouse Entered")
         menuItemView?.material = .selection
         menuItemView?.isEmphasized = true
-        ssid?.textColor = NSColor(deviceRed: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+        //ssid?.textColor = NSColor(deviceRed: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
     }
     
     override func mouseExited(with event: NSEvent) {
         print("Mouse Exited")
         menuItemView?.material = .popover
         menuItemView?.isEmphasized = false
-        ssid?.textColor = NSColor(deviceRed: 0 / 255.0, green: 0 / 255.0, blue: 0 / 255.0, alpha: 1.0)
+        //ssid?.textColor = NSColor(deviceRed: 0 / 255.0, green: 0 / 255.0, blue: 0 / 255.0, alpha: 1.0)
     }
     
     override func mouseUp(with event: NSEvent) {
@@ -83,6 +90,8 @@ class wifiMenuItemView: NSView {
     }
     
     override func draw(_ Rect: NSRect) {
+        super.draw(Rect)
+        drawFocusRingMask()
         //NSColor.selectedMenuItemColor.set()
         //Rect.fill()
         //menuItemView?.isHidden = !(enclosingMenuItem?.isHighlighted ?? false)

@@ -30,7 +30,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelegate, NSMenuD
     @IBOutlet weak var WiFiList: NSTableView!
     
     var statusBar:NSStatusItem!
-    let WiFiPopup:NSAlert = NSAlert()
+    static let WiFiPopup:NSAlert = NSAlert()
     var Password:String = ""
     var count:Int = 8
     var WiFiStatus:Bool = false
@@ -39,6 +39,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelegate, NSMenuD
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        WiFiPop()
         
         WiFiPasswdField.isHidden = false
         WiFiPasswdField1.isHidden = true
@@ -129,16 +130,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelegate, NSMenuD
     }
     
     func WiFiPop() {
-        WiFiPopup.icon = NSImage.init(named: "WiFi")
-        WiFiPopup.messageText = "Wi-Fi网络“Catch Bat”需要WPA2密码。"
-        WiFiPopup.alertStyle = NSAlert.Style.informational
-        WiFiPopup.addButton(withTitle: "加入")
-        WiFiPopup.addButton(withTitle: "取消")
-        WiFiPopup.buttons[0].isEnabled = false
-        WiFiPopup.showsHelp = true
-        WiFiPopup.accessoryView = WiFiSubView
-        WiFiPopup.window.initialFirstResponder = WiFiPasswdField
-        WiFiPopup.runModal()
+        AppDelegate.WiFiPopup.icon = NSImage.init(named: "WiFi")
+        AppDelegate.WiFiPopup.messageText = "Wi-Fi网络“Catch Bat”需要WPA2密码。"
+        AppDelegate.WiFiPopup.alertStyle = NSAlert.Style.informational
+        AppDelegate.WiFiPopup.addButton(withTitle: "加入")
+        AppDelegate.WiFiPopup.addButton(withTitle: "取消")
+        AppDelegate.WiFiPopup.buttons[0].isEnabled = false
+        AppDelegate.WiFiPopup.showsHelp = true
+        AppDelegate.WiFiPopup.accessoryView = WiFiPopoverSubview(frame: NSRect(x: 0, y: 0, width: 300, height: 80))//WiFiSubView
+        AppDelegate.WiFiPopup.window.initialFirstResponder = WiFiPopoverSubview.passwdInputBox1 //WiFiPasswdField
+        AppDelegate.WiFiPopup.runModal()
     }
     
     @IBAction func ShowPasswd(_ sender: Any) {
@@ -188,9 +189,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSTextFieldDelegate, NSMenuD
     
     func controlTextDidChange(_ notification: Notification) {
         if WiFiPasswdField.stringValue.count < 8 && WiFiPasswdField1.stringValue.count < 8 {
-            WiFiPopup.buttons[0].isEnabled = false
+            AppDelegate.WiFiPopup.buttons[0].isEnabled = false
         } else {
-            WiFiPopup.buttons[0].isEnabled = true
+            AppDelegate.WiFiPopup.buttons[0].isEnabled = true
         }
         if WiFiPasswdField.stringValue.count > 64 {
             let index = WiFiPasswdField.stringValue.index(WiFiPasswdField.stringValue.startIndex, offsetBy: 64)
