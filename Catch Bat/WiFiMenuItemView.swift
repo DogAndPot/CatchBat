@@ -89,8 +89,10 @@ class wifiMenuItemView: NSView {
     }
     
     override func mouseUp(with event: NSEvent) {
+        statusBar.menu?.cancelTracking()
         print("Mouse Up")
         Functions.WiFiPop()
+        
     }
     
     override func draw(_ Rect: NSRect) {
@@ -115,12 +117,6 @@ class wifiMenuItemView: NSView {
             return view.effectiveAppearance.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua
         }
         return false
-    }
-    
-    func themeChanged(_ notification: Notification?) {
-        if let notification = notification {
-            print("\(notification)")
-        }
     }
     
     required init?(coder: NSCoder) {

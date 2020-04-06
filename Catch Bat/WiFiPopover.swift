@@ -17,16 +17,20 @@ class WiFiPopoverSubview: NSView, NSTextFieldDelegate{
     static var passwdInputBox1: NSSecureTextField?
     var isShowPasswd: NSButton?
     var isSave:NSButton?
+    var joinButton: NSButton?
+    var cancelButton: NSButton?
     
     override init(frame: NSRect) {
         super.init(frame: frame)
-        view = NSView(frame: NSRect(x: 0, y: 0, width: 300, height: 80))
-        passwdLabel = NSTextView(frame: NSRect(x: 0, y: 59, width: 100, height: 21))
-        WiFiPopoverSubview.passwdInputBox = NSTextField(frame: NSRect(x: 45, y: 59, width: 255, height: 21))
+        view = NSView(frame: NSRect(x: 0, y: 0, width: 322, height: 125))
+        passwdLabel = NSTextView(frame: NSRect(x: 0, y: 104, width: 100, height: 21))
+        WiFiPopoverSubview.passwdInputBox = NSTextField(frame: NSRect(x: 45, y: 104, width: 255, height: 21))
         passwdInputBoxCell = NSTextFieldCell.init()
-        WiFiPopoverSubview.passwdInputBox1 = NSSecureTextField(frame: NSRect(x: 45, y: 59, width: 255, height: 21))
-        isShowPasswd = NSButton(frame: NSRect(x: 43, y: 35, width: 100, height: 18))
-        isSave = NSButton(frame: NSRect(x: 43, y: 15, width: 100, height: 18))
+        WiFiPopoverSubview.passwdInputBox1 = NSSecureTextField(frame: NSRect(x: 45, y: 104, width: 255, height: 21))
+        isShowPasswd = NSButton(frame: NSRect(x: 43, y: 80, width: 100, height: 18))
+        isSave = NSButton(frame: NSRect(x: 43, y: 60, width: 100, height: 18))
+        joinButton = NSButton(frame: NSRect(x: 225, y: 0, width: 85, height: 22))
+        cancelButton = NSButton(frame: NSRect(x: 141, y: 0, width: 85, height: 22))
         
         passwdLabel?.string = "密码："
         passwdLabel?.drawsBackground = false
@@ -68,6 +72,19 @@ class WiFiPopoverSubview: NSView, NSTextFieldDelegate{
         isSave?.target = self
         isSave?.action = #selector(saveWiFi(_:))
         view?.addSubview(isSave!)
+        
+        joinButton?.bezelStyle = NSButton.BezelStyle.rounded
+        joinButton?.title = "加入"
+        joinButton?.target = self
+        joinButton?.isEnabled = false
+        //joinButton?.action = #selector()
+        view?.addSubview(joinButton!)
+        
+        cancelButton?.bezelStyle = .rounded
+        cancelButton?.title = "取消"
+        cancelButton?.target = self
+        //cancelButton?.action = #selector()
+        view?.addSubview(cancelButton!)
         
         if let _ = view { addSubview(view!) }
     }
