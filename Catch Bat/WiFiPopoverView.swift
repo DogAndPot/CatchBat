@@ -9,8 +9,10 @@
 import Foundation
 import Cocoa
 
-class WiFiPopoverSubview: NSView, NSTextFieldDelegate{
+class WiFiPopoverSubview: NSView,NSWindowDelegate, NSTextFieldDelegate{
     var view: NSView?
+    var icon: NSImageView?
+    var title: NSTextField?
     var passwdLabel: NSTextView?
     static var passwdInputBox: NSTextField?
     var passwdInputBoxCell: NSTextFieldCell?
@@ -20,17 +22,31 @@ class WiFiPopoverSubview: NSView, NSTextFieldDelegate{
     var joinButton: NSButton?
     var cancelButton: NSButton?
     
+    
+    
     override init(frame: NSRect) {
         super.init(frame: frame)
-        view = NSView(frame: NSRect(x: 0, y: 0, width: 322, height: 125))
-        passwdLabel = NSTextView(frame: NSRect(x: 0, y: 104, width: 100, height: 21))
-        WiFiPopoverSubview.passwdInputBox = NSTextField(frame: NSRect(x: 45, y: 104, width: 255, height: 21))
+        view = NSView(frame: NSRect(x: 0, y: 0, width: 450, height: 247))
+        icon = NSImageView(frame: NSRect(x: 25, y: 165, width: 64, height: 64))
+        title = NSTextField(frame: NSRect(x: 105, y: 210, width: 345, height: 16))
+        passwdLabel = NSTextView(frame: NSRect(x: 128, y: 124, width: 100, height: 21))
+        WiFiPopoverSubview.passwdInputBox = NSTextField(frame: NSRect(x: 173, y: 124, width: 255, height: 21))
         passwdInputBoxCell = NSTextFieldCell.init()
-        WiFiPopoverSubview.passwdInputBox1 = NSSecureTextField(frame: NSRect(x: 45, y: 104, width: 255, height: 21))
-        isShowPasswd = NSButton(frame: NSRect(x: 43, y: 80, width: 100, height: 18))
-        isSave = NSButton(frame: NSRect(x: 43, y: 60, width: 100, height: 18))
-        joinButton = NSButton(frame: NSRect(x: 225, y: 0, width: 85, height: 22))
-        cancelButton = NSButton(frame: NSRect(x: 141, y: 0, width: 85, height: 22))
+        WiFiPopoverSubview.passwdInputBox1 = NSSecureTextField(frame: NSRect(x: 173, y: 124, width: 255, height: 21))
+        isShowPasswd = NSButton(frame: NSRect(x: 173, y: 100, width: 100, height: 18))
+        isSave = NSButton(frame: NSRect(x: 173, y: 80, width: 100, height: 18))
+        joinButton = NSButton(frame: NSRect(x: 353, y: 18, width: 85, height: 22))
+        cancelButton = NSButton(frame: NSRect(x: 269, y: 18, width: 85, height: 22))
+        
+        icon?.image = NSImage.init(named: "WiFi")
+        view?.addSubview(icon!)
+        
+        title?.stringValue = "Wi-Fi网络“Catch Bat“需要WPA2密码。"
+        title?.drawsBackground = false
+        title?.isBordered = false
+        title?.isSelectable = false
+        title?.font = NSFont.boldSystemFont(ofSize: 13)//systemFont(ofSize: 13).
+        view?.addSubview(title!)
         
         passwdLabel?.string = "密码："
         passwdLabel?.drawsBackground = false
@@ -83,7 +99,7 @@ class WiFiPopoverSubview: NSView, NSTextFieldDelegate{
         cancelButton?.bezelStyle = .rounded
         cancelButton?.title = "取消"
         cancelButton?.target = self
-        //cancelButton?.action = #selector()
+        cancelButton?.action = #selector(cancel(_:))
         view?.addSubview(cancelButton!)
         
         if let _ = view { addSubview(view!) }
@@ -112,6 +128,10 @@ class WiFiPopoverSubview: NSView, NSTextFieldDelegate{
 
     }
     
+    @objc func cancel(_ sender: Any?) {
+        popWindow?.close()
+    }
+    
     func controlTextDidChange(_ obj: Notification) {
         if WiFiPopoverSubview.passwdInputBox?.isHidden == false {
             WiFiPopoverSubview.passwdInputBox1?.stringValue = WiFiPopoverSubview.passwdInputBox?.stringValue as! String
@@ -119,9 +139,9 @@ class WiFiPopoverSubview: NSView, NSTextFieldDelegate{
             WiFiPopoverSubview.passwdInputBox?.stringValue = WiFiPopoverSubview.passwdInputBox1?.stringValue as! String
         }
         if (WiFiPopoverSubview.passwdInputBox1?.stringValue.count)! < 8 && (WiFiPopoverSubview.passwdInputBox?.stringValue.count)! < 8 {
-            WiFiPopup.buttons[0].isEnabled = false
+            joinButton?.isEnabled = false
         } else {
-            WiFiPopup.buttons[0].isEnabled = true
+            joinButton?.isEnabled = true
         }
         if (WiFiPopoverSubview.passwdInputBox1?.stringValue.count)! > 64 {
             let index = WiFiPopoverSubview.passwdInputBox1?.stringValue.index((WiFiPopoverSubview.passwdInputBox1?.stringValue.startIndex)!, offsetBy: 64)

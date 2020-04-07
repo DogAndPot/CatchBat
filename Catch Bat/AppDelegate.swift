@@ -23,7 +23,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         statusBar.button?.image = NSImage.init(named: "AirPortOff")
         statusBar.button?.image?.isTemplate = true
         statusBar.menu = StatusMenuView.init(title: "")
+        
+        popWindow = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 450, height: 247), styleMask: .titled, backing: .buffered, defer: false)
+        popWindow?.contentView = WiFiPopoverSubview.init()
+        popWindow?.isReleasedWhenClosed = false
+        
     }
+    
     
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application

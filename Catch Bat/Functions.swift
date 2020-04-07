@@ -9,6 +9,7 @@
 import Foundation
 import Cocoa
 
+
 class Functions {
     class func WiFiPop() {
         var popWindow: NSWindow?
@@ -38,8 +39,6 @@ class Functions {
         popWindow?.level = NSWindow.Level.popUpMenu
         popWindow?.contentView = view
         popWindow?.makeKeyAndOrderFront(self)
-        
-        //popWindow?.close()
         /*
         WiFiPopup.icon = NSImage.init(named: "WiFi")
         WiFiPopup.messageText = "Wi-Fi网络“Catch Bat”需要WPA2密码。"

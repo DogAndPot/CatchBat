@@ -9,10 +9,16 @@
 import Foundation
 import Cocoa
 
+var popWindow: NSWindow?
+var ssid: String = ""
+var isConnect: Bool = false
+var isEncrypted: Bool = false
+var signal: Int = 0
+
 class wifiMenuItemView: NSView {
     var menuItemView: NSVisualEffectView?//NSView?
     var statusImage: NSImageView?
-    var ssid: NSTextView?
+    var ssidLabel: NSTextView?
     var lockImage: NSImageView?
     var signalImage: NSImageView?
     var highlightColor: NSColor?
@@ -21,7 +27,7 @@ class wifiMenuItemView: NSView {
     override init(frame: NSRect) {
         super.init(frame: frame)
         menuItemView = NSVisualEffectView(frame: NSRect(x: 0, y: 0, width: 285, height: 18))
-        menuItemView?.addTrackingRect(menuItemView!.bounds, owner: menuItemView, userData: nil, assumeInside: false)
+        menuItemView?.addTrackingRect(menuItemView!.bounds, owner: menuItemView!, userData: nil, assumeInside: false)
         menuItemView?.state = .active
         menuItemView?.material = .popover
         menuItemView?.isEmphasized = false
@@ -30,19 +36,20 @@ class wifiMenuItemView: NSView {
         statusImage = NSImageView(frame: NSRect(x: 3, y: 0, width: 18, height: 18))
         statusImage?.image = NSImage.init(named: "NSMenuOnStateTemplate")
         statusImage?.image?.isTemplate = true
-        
+        statusImage?.isHidden = !isConnect
         menuItemView?.addSubview(statusImage!)
         
-        ssid = NSTextView(frame: NSRect(x: 18, y: 0, width: 206, height: 18))
-        ssid?.drawsBackground = false
-        ssid?.isEditable = false
-        ssid?.isSelectable = false
-        ssid?.font = NSFont.systemFont(ofSize: 14)
-        ssid?.string = "Catch Bat"
-        menuItemView?.addSubview(ssid!)
+        ssidLabel = NSTextView(frame: NSRect(x: 18, y: 0, width: 206, height: 18))
+        ssidLabel?.drawsBackground = false
+        ssidLabel?.isEditable = false
+        ssidLabel?.isSelectable = false
+        ssidLabel?.font = NSFont.systemFont(ofSize: 14)
+        ssidLabel?.string = ssid//"Catch Bat"
+        menuItemView?.addSubview(ssidLabel!)
         
         lockImage = NSImageView(frame: NSRect(x: 231, y: 0, width: 18, height: 18))
         lockImage?.image = NSImage.init(named: "NSLockLockedTemplate")
+        lockImage?.isHidden = !isEncrypted
         menuItemView?.addSubview(lockImage!)
         
         signalImage = NSImageView(frame: NSRect(x: 257, y: 0, width: 18, height: 18))
@@ -72,7 +79,7 @@ class wifiMenuItemView: NSView {
         print("Mouse Entered")
         menuItemView?.material = .selection
         menuItemView?.isEmphasized = true
-        ssid?.textColor = highlightColor
+        ssidLabel?.textColor = highlightColor
         statusImage?.contentTintColor = highlightColor
         lockImage?.contentTintColor = highlightColor
         signalImage?.contentTintColor = highlightColor
@@ -82,17 +89,16 @@ class wifiMenuItemView: NSView {
         print("Mouse Exited")
         menuItemView?.material = .popover
         menuItemView?.isEmphasized = false
-        ssid?.textColor = normalColor
+        ssidLabel?.textColor = normalColor
         statusImage?.contentTintColor = normalColor
         lockImage?.contentTintColor = normalColor
         signalImage?.contentTintColor = normalColor
     }
     
     override func mouseUp(with event: NSEvent) {
+        popWindow?.makeKeyAndOrderFront(self)
         statusBar.menu?.cancelTracking()
         print("Mouse Up")
-        Functions.WiFiPop()
-        
     }
     
     override func draw(_ Rect: NSRect) {
@@ -104,7 +110,7 @@ class wifiMenuItemView: NSView {
             normalColor = NSColor(deviceRed: 0.0 / 255.0, green: 0.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0)
         }
         if !enclosingMenuItem!.isHighlighted {
-            ssid?.textColor = normalColor
+            ssidLabel?.textColor = normalColor
             statusImage?.contentTintColor = normalColor
             lockImage?.contentTintColor = normalColor
             signalImage?.contentTintColor = normalColor
