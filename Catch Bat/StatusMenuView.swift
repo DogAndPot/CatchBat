@@ -10,8 +10,8 @@ import Foundation
 import Cocoa
 
 class StatusMenuView: NSMenu, NSMenuDelegate {
-    var timer: Timer?
-    var count:Int = 8
+    //var timer: Timer?
+    //var count:Int = 8
     
     override init(title: String) {
         super.init(title: title)
@@ -73,61 +73,17 @@ class StatusMenuView: NSMenu, NSMenuDelegate {
         case "开启Wi-Fi":
             items[6].title = "Wi-Fi: 开启"
             items[7].title = "关闭Wi-Fi"
-            let queue = DispatchQueue.global(qos: .default)
-            
-            queue.async { [unowned self] in
-                self.timer = nil
-                self.timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(self.tick), userInfo: nil, repeats: true)
-                let currentRunLoop = RunLoop.current
-                //currentRunLoop.add(self.timer!, forMode: .common)
-                currentRunLoop.run()
-            }
+            StatusBarIcon.on()
         case "关闭Wi-Fi":
             items[6].title = "Wi-Fi: 关闭"
             items[7].title = "开启Wi-Fi"
             //timer?.invalidate()
-            timer = nil
-            statusBar.button?.image = NSImage.init(named: "AirPortOff")
+            //timer = nil
+            StatusBarIcon.off()
         case "放走Bat":
             exit(0)
         default:
             print("default")
-        }
-    }
-    
-    @objc func tick() {
-        DispatchQueue.main.async {
-            self.count -= 1
-            switch self.count {
-            case 7:
-                statusBar.button?.image = NSImage.init(named: "AirPortScanning1")
-                break
-            case 6:
-                statusBar.button?.image = NSImage.init(named: "AirPortScanning2")
-                break
-            case 5:
-                statusBar.button?.image = NSImage.init(named: "AirPortScanning3")
-                break
-            case 4:
-                statusBar.button?.image = NSImage.init(named: "AirPortScanning4")
-                break
-            case 3:
-                statusBar.button?.image = NSImage.init(named: "AirPortScanning3")
-                break
-            case 2:
-                statusBar.button?.image = NSImage.init(named: "AirPortScanning2")
-                break
-            case 1:
-                statusBar.button?.image = NSImage.init(named: "AirPortScanning1")
-                break
-            case 0:
-                self.count = 8
-                self.timer?.invalidate()
-                statusBar.button?.image = NSImage.init(named: "AirPort4")
-                break
-            default:
-                return
-            }
         }
     }
     

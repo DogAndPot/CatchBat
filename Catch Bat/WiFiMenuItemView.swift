@@ -58,11 +58,11 @@ class wifiMenuItemView: NSView {
         menuItemView?.addSubview(signalImage!)
         
         if isDarkMode(view: menuItemView!) {
-            highlightColor = NSColor(deviceRed: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
-            normalColor = NSColor(deviceRed: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+            highlightColor = NSColor.white
+            normalColor = NSColor.white
         } else {
-            highlightColor = NSColor(deviceRed: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
-            normalColor = NSColor(deviceRed: 0.0 / 255.0, green: 0.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0)
+            highlightColor = NSColor.white
+            normalColor = NSColor.black
         }
         
         
@@ -103,11 +103,11 @@ class wifiMenuItemView: NSView {
     
     override func draw(_ Rect: NSRect) {
         if isDarkMode(view: menuItemView!) {
-            highlightColor = NSColor(deviceRed: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
-            normalColor = NSColor(deviceRed: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+            highlightColor = NSColor.white
+            normalColor = NSColor.white
         } else {
-            highlightColor = NSColor(deviceRed: 255.0 / 255.0, green: 255.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
-            normalColor = NSColor(deviceRed: 0.0 / 255.0, green: 0.0 / 255.0, blue: 0.0 / 255.0, alpha: 1.0)
+            highlightColor = NSColor.white
+            normalColor = NSColor.black
         }
         if !enclosingMenuItem!.isHighlighted {
             ssidLabel?.textColor = normalColor
