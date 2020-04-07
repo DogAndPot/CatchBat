@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-class StatusMenuView: NSMenu, NSMenuDelegate {
+class StatusMenu: NSMenu, NSMenuDelegate {
     //var timer: Timer?
     //var count:Int = 8
     

@@ -22,7 +22,7 @@ class WiFiPopoverSubview: NSView,NSWindowDelegate, NSTextFieldDelegate{
     var joinButton: NSButton?
     var cancelButton: NSButton?
     
-    
+    static var ssid: String = ""
     
     override init(frame: NSRect) {
         super.init(frame: frame)
@@ -41,7 +41,7 @@ class WiFiPopoverSubview: NSView,NSWindowDelegate, NSTextFieldDelegate{
         icon?.image = NSImage.init(named: "WiFi")
         view?.addSubview(icon!)
         
-        title?.stringValue = "Wi-Fi网络“Catch Bat“需要WPA2密码。"
+        title?.stringValue = "Wi-Fi网络“\(WiFiPopoverSubview.ssid)“需要WPA2密码。"
         title?.drawsBackground = false
         title?.isBordered = false
         title?.isSelectable = false

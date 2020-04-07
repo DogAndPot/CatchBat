@@ -76,7 +76,6 @@ class wifiMenuItemView: NSView {
     }
     
     override func mouseEntered(with event: NSEvent) {
-        print("Mouse Entered")
         menuItemView?.material = .selection
         menuItemView?.isEmphasized = true
         ssidLabel?.textColor = highlightColor
@@ -86,7 +85,6 @@ class wifiMenuItemView: NSView {
     }
     
     override func mouseExited(with event: NSEvent) {
-        print("Mouse Exited")
         menuItemView?.material = .popover
         menuItemView?.isEmphasized = false
         ssidLabel?.textColor = normalColor
@@ -96,7 +94,21 @@ class wifiMenuItemView: NSView {
     }
     
     override func mouseUp(with event: NSEvent) {
+        menuItemView?.material = .popover
+        menuItemView?.isEmphasized = false
+        ssidLabel?.textColor = normalColor
+        statusImage?.contentTintColor = normalColor
+        lockImage?.contentTintColor = normalColor
+        signalImage?.contentTintColor = normalColor
+        WiFiPopoverSubview.ssid = ssidLabel?.string as! String
+        popWindow?.close()
+        popWindow = nil
+        popWindow = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 450, height: 247), styleMask: .titled, backing: .buffered, defer: false)
+        popWindow?.contentView = WiFiPopoverSubview.init()
+        popWindow?.isReleasedWhenClosed = false
+        popWindow?.level = .floating
         popWindow?.makeKeyAndOrderFront(self)
+        popWindow?.center()
         statusBar.menu?.cancelTracking()
         print("Mouse Up")
     }
