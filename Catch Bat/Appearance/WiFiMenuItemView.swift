@@ -65,10 +65,7 @@ class wifiMenuItemView: NSView {
             normalColor = NSColor.black
         }
         
-        
         if let _ = menuItemView { addSubview(menuItemView!) }
-        //if let _ = statusImage { addSubview(statusImage!) }
-        //if let _ = ssid { addSubview(ssid!) }
         
         autoresizesSubviews = true
         autoresizingMask = [.width, .height]
@@ -110,8 +107,16 @@ class wifiMenuItemView: NSView {
         popWindow?.makeKeyAndOrderFront(self)
         popWindow?.center()
         statusBar.menu?.cancelTracking()
-        print("Mouse Up")
     }
+    
+    override func viewWillMove(toWindow newWindow: NSWindow?) {
+        //Fix mouseUp event after losing focus
+        //https://stackoverflow.com/questions/15075033/weird-issue-with-nsmenuitem-custom-view-and-mouseup
+        super.viewWillMove(toWindow: newWindow)
+        newWindow?.becomeKey()
+        updateTrackingAreas()
+    }
+
     
     override func draw(_ Rect: NSRect) {
         if isDarkMode(view: menuItemView!) {

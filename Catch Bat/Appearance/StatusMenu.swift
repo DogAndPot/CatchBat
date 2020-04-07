@@ -36,6 +36,12 @@ class StatusMenu: NSMenu, NSMenuDelegate {
         addItem(withTitle: "Catch Bat", action: #selector(clickMenuItem(_:)), keyEquivalent: "").view = wifiMenuItemView(frame: NSRect(x: 0, y: 0, width: 285, height: 20))
         ssid = "Catch Dog"; isConnect = false; isEncrypted = false
         addItem(withTitle: "Catch Dog", action: #selector(clickMenuItem(_:)), keyEquivalent: "").view = wifiMenuItemView(frame: NSRect(x: 0, y: 0, width: 285, height: 20))
+        ssid = "Catch Star"; isConnect = false; isEncrypted = false
+        addItem(withTitle: "Catch Star", action: #selector(clickMenuItem(_:)), keyEquivalent: "").view = wifiMenuItemView(frame: NSRect(x: 0, y: 0, width: 285, height: 20))
+        ssid = "Catch iStar"; isConnect = false; isEncrypted = false
+        addItem(withTitle: "Catch iStar", action: #selector(clickMenuItem(_:)), keyEquivalent: "").view = wifiMenuItemView(frame: NSRect(x: 0, y: 0, width: 285, height: 20))
+        ssid = "Catch Hackintosh Tiny Bing"; isConnect = false; isEncrypted = false
+        addItem(withTitle: "Catch Dog", action: #selector(clickMenuItem(_:)), keyEquivalent: "").view = wifiMenuItemView(frame: NSRect(x: 0, y: 0, width: 285, height: 20))
         addItem(NSMenuItem.separator())
         addItem(withTitle: "加入其他网络...", action: #selector(clickMenuItem(_:)), keyEquivalent: "").target = self
         addItem(withTitle: "创建网络...", action: #selector(clickMenuItem(_:)), keyEquivalent: "").target = self
@@ -44,6 +50,7 @@ class StatusMenu: NSMenu, NSMenuDelegate {
     }
     
     func menuWillOpen(_ menu: NSMenu) {
+        
         if (NSApp.currentEvent?.modifierFlags.contains(.option))! {
             // 当按下 option 键显示特殊菜单
             buildOptionMenu()
@@ -80,10 +87,14 @@ class StatusMenu: NSMenu, NSMenuDelegate {
             //timer?.invalidate()
             //timer = nil
             StatusBarIcon.off()
+        case "打开网络偏好设置...":
+            NSWorkspace.shared.openFile("/System/Library/PreferencePanes/Network.prefPane")
         case "放走Bat":
             exit(0)
         default:
-            print("default")
+            print("Default")
+            //let url = URL(string: "x-apple.systempreferences:com.apple.preference.network")!
+            //NSWorkspace.shared.open(url)
         }
     }
     

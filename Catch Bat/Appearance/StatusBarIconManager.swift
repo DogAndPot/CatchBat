@@ -13,7 +13,6 @@ class StatusBarIcon: NSObject {
     static var timer: Timer?
     static var count:Int = 8
     static func on() {
-        print("Icon On")
         let queue = DispatchQueue.global(qos: .default)
         queue.async { //[unowned self] in
             self.timer = nil
@@ -33,7 +32,6 @@ class StatusBarIcon: NSObject {
     
     @objc class func tick() {
         DispatchQueue.main.async {
-            print(count)
             StatusBarIcon.count -= 1
             switch StatusBarIcon.count {
             case 7:

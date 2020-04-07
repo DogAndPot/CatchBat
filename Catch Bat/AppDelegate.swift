@@ -23,9 +23,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         statusBar.button?.image = NSImage.init(named: "AirPortOff")
         statusBar.button?.image?.isTemplate = true
         statusBar.menu = StatusMenu.init(title: "")
-        
-        
-        
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
