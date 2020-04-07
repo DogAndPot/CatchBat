@@ -17,7 +17,36 @@
 		BCFA32EB2424D2BE00E23603 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFA32EA2424D2BE00E23603 /* AppDelegate.swift */; };
 		BCFA32ED2424D2BF00E23603 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCFA32EC2424D2BF00E23603 /* Assets.xcassets */; };
 		BCFA32F02424D2BF00E23603 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCFA32EE2424D2BF00E23603 /* MainMenu.xib */; };
+		F86A8960243CD13300CBABC2 /* TestService.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F86A895F243CD13300CBABC2 /* TestService.hpp */; };
+		F86A8962243CD13400CBABC2 /* TestService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F86A8961243CD13400CBABC2 /* TestService.cpp */; };
+		F86A896E243CD1B500CBABC2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F86A896D243CD1B500CBABC2 /* main.cpp */; };
+		F86A8979243CD50A00CBABC2 /* Api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F86A8977243CD50A00CBABC2 /* Api.cpp */; };
+		F86A897B243CD6EA00CBABC2 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = F86A8972243CD40800CBABC2 /* Common.h */; };
+		F86A897D243CD72700CBABC2 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = F86A8972243CD40800CBABC2 /* Common.h */; };
+		F86A897E243CD73100CBABC2 /* Api.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F86A8978243CD50A00CBABC2 /* Api.hpp */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F86A8975243CD44B00CBABC2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BCFA32DF2424D2BE00E23603 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F86A896A243CD1B500CBABC2;
+			remoteInfo = ClientKit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F86A8969243CD1B500CBABC2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		BC83AD2D2428FF7400DF6DFD /* WiFi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFi.swift; sourceTree = "<group>"; };
@@ -33,10 +62,33 @@
 		BCFA32EF2424D2BF00E23603 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		BCFA32F12424D2BF00E23603 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BCFA32F22424D2BF00E23603 /* Catch_Bat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Catch_Bat.entitlements; sourceTree = "<group>"; };
+		F86A895D243CD13000CBABC2 /* TestService.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestService.kext; sourceTree = BUILT_PRODUCTS_DIR; };
+		F86A895F243CD13300CBABC2 /* TestService.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TestService.hpp; sourceTree = "<group>"; };
+		F86A8961243CD13400CBABC2 /* TestService.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestService.cpp; sourceTree = "<group>"; };
+		F86A8963243CD13400CBABC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F86A896B243CD1B500CBABC2 /* ClientKit */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ClientKit; sourceTree = BUILT_PRODUCTS_DIR; };
+		F86A896D243CD1B500CBABC2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		F86A8972243CD40800CBABC2 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		F86A8977243CD50A00CBABC2 /* Api.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Api.cpp; sourceTree = "<group>"; };
+		F86A8978243CD50A00CBABC2 /* Api.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Api.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		BCFA32E42424D2BE00E23603 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F86A895A243CD13000CBABC2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F86A8968243CD1B500CBABC2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -61,7 +113,10 @@
 		BCFA32DE2424D2BE00E23603 = {
 			isa = PBXGroup;
 			children = (
+				F86A897A243CD5F500CBABC2 /* Common */,
 				BCFA32E92424D2BE00E23603 /* Catch Bat */,
+				F86A895E243CD13100CBABC2 /* TestService */,
+				F86A896C243CD1B500CBABC2 /* ClientKit */,
 				BCFA32E82424D2BE00E23603 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -70,6 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				BCFA32E72424D2BE00E23603 /* Catch Bat.app */,
+				F86A895D243CD13000CBABC2 /* TestService.kext */,
+				F86A896B243CD1B500CBABC2 /* ClientKit */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -89,7 +146,56 @@
 			path = "Catch Bat";
 			sourceTree = "<group>";
 		};
+		F86A895E243CD13100CBABC2 /* TestService */ = {
+			isa = PBXGroup;
+			children = (
+				F86A895F243CD13300CBABC2 /* TestService.hpp */,
+				F86A8961243CD13400CBABC2 /* TestService.cpp */,
+				F86A8963243CD13400CBABC2 /* Info.plist */,
+			);
+			path = TestService;
+			sourceTree = "<group>";
+		};
+		F86A896C243CD1B500CBABC2 /* ClientKit */ = {
+			isa = PBXGroup;
+			children = (
+				F86A896D243CD1B500CBABC2 /* main.cpp */,
+				F86A8977243CD50A00CBABC2 /* Api.cpp */,
+				F86A8978243CD50A00CBABC2 /* Api.hpp */,
+			);
+			path = ClientKit;
+			sourceTree = "<group>";
+		};
+		F86A897A243CD5F500CBABC2 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				F86A8972243CD40800CBABC2 /* Common.h */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		F86A8958243CD13000CBABC2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F86A897B243CD6EA00CBABC2 /* Common.h in Headers */,
+				F86A8960243CD13300CBABC2 /* TestService.hpp in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F86A897C243CD72000CBABC2 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F86A897E243CD73100CBABC2 /* Api.hpp in Headers */,
+				F86A897D243CD72700CBABC2 /* Common.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		BCFA32E62424D2BE00E23603 /* Catch Bat */ = {
@@ -103,11 +209,48 @@
 			buildRules = (
 			);
 			dependencies = (
+				F86A8976243CD44B00CBABC2 /* PBXTargetDependency */,
 			);
 			name = "Catch Bat";
 			productName = "Catch Bat";
 			productReference = BCFA32E72424D2BE00E23603 /* Catch Bat.app */;
 			productType = "com.apple.product-type.application";
+		};
+		F86A895C243CD13000CBABC2 /* TestService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F86A8966243CD13400CBABC2 /* Build configuration list for PBXNativeTarget "TestService" */;
+			buildPhases = (
+				F86A8958243CD13000CBABC2 /* Headers */,
+				F86A8959243CD13000CBABC2 /* Sources */,
+				F86A895A243CD13000CBABC2 /* Frameworks */,
+				F86A895B243CD13000CBABC2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TestService;
+			productName = TestService;
+			productReference = F86A895D243CD13000CBABC2 /* TestService.kext */;
+			productType = "com.apple.product-type.kernel-extension";
+		};
+		F86A896A243CD1B500CBABC2 /* ClientKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F86A896F243CD1B500CBABC2 /* Build configuration list for PBXNativeTarget "ClientKit" */;
+			buildPhases = (
+				F86A897C243CD72000CBABC2 /* Headers */,
+				F86A8967243CD1B500CBABC2 /* Sources */,
+				F86A8968243CD1B500CBABC2 /* Frameworks */,
+				F86A8969243CD1B500CBABC2 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ClientKit;
+			productName = ClientKit;
+			productReference = F86A896B243CD1B500CBABC2 /* ClientKit */;
+			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
@@ -121,6 +264,12 @@
 				TargetAttributes = {
 					BCFA32E62424D2BE00E23603 = {
 						CreatedOnToolsVersion = 11.3.1;
+					};
+					F86A895C243CD13000CBABC2 = {
+						CreatedOnToolsVersion = 11.1;
+					};
+					F86A896A243CD1B500CBABC2 = {
+						CreatedOnToolsVersion = 11.1;
 					};
 				};
 			};
@@ -138,6 +287,8 @@
 			projectRoot = "";
 			targets = (
 				BCFA32E62424D2BE00E23603 /* Catch Bat */,
+				F86A895C243CD13000CBABC2 /* TestService */,
+				F86A896A243CD1B500CBABC2 /* ClientKit */,
 			);
 		};
 /* End PBXProject section */
@@ -149,6 +300,13 @@
 			files = (
 				BCFA32ED2424D2BF00E23603 /* Assets.xcassets in Resources */,
 				BCFA32F02424D2BF00E23603 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F86A895B243CD13000CBABC2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -170,7 +328,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F86A8959243CD13000CBABC2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F86A8962243CD13400CBABC2 /* TestService.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F86A8967243CD1B500CBABC2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F86A8979243CD50A00CBABC2 /* Api.cpp in Sources */,
+				F86A896E243CD1B500CBABC2 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F86A8976243CD44B00CBABC2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F86A896A243CD1B500CBABC2 /* ClientKit */;
+			targetProxy = F86A8975243CD44B00CBABC2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		BCFA32EE2424D2BF00E23603 /* MainMenu.xib */ = {
@@ -333,6 +516,58 @@
 			};
 			name = Release;
 		};
+		F86A8964243CD13400CBABC2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1.0.0d1;
+				DEVELOPMENT_TEAM = YXX7XALBVX;
+				INFOPLIST_FILE = TestService/Info.plist;
+				MODULE_NAME = com.zxystd.TestService;
+				MODULE_VERSION = 1.0.0d1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zxystd.TestService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = kext;
+			};
+			name = Debug;
+		};
+		F86A8965243CD13400CBABC2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1.0.0d1;
+				DEVELOPMENT_TEAM = YXX7XALBVX;
+				INFOPLIST_FILE = TestService/Info.plist;
+				MODULE_NAME = com.zxystd.TestService;
+				MODULE_VERSION = 1.0.0d1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zxystd.TestService;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = kext;
+			};
+			name = Release;
+		};
+		F86A8970243CD1B500CBABC2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YXX7XALBVX;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F86A8971243CD1B500CBABC2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YXX7XALBVX;
+				ENABLE_HARDENED_RUNTIME = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -350,6 +585,24 @@
 			buildConfigurations = (
 				BCFA32F62424D2BF00E23603 /* Debug */,
 				BCFA32F72424D2BF00E23603 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F86A8966243CD13400CBABC2 /* Build configuration list for PBXNativeTarget "TestService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F86A8964243CD13400CBABC2 /* Debug */,
+				F86A8965243CD13400CBABC2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F86A896F243CD1B500CBABC2 /* Build configuration list for PBXNativeTarget "ClientKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F86A8970243CD1B500CBABC2 /* Debug */,
+				F86A8971243CD1B500CBABC2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
