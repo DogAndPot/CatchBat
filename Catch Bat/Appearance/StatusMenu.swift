@@ -40,8 +40,10 @@ class StatusMenu: NSMenu, NSMenuDelegate {
         addItem(withTitle: "Catch Star", action: #selector(clickMenuItem(_:)), keyEquivalent: "").view = wifiMenuItemView(frame: NSRect(x: 0, y: 0, width: 285, height: 20))
         ssid = "Catch iStar"; isConnect = false; isEncrypted = false
         addItem(withTitle: "Catch iStar", action: #selector(clickMenuItem(_:)), keyEquivalent: "").view = wifiMenuItemView(frame: NSRect(x: 0, y: 0, width: 285, height: 20))
+        ssid = "Catch penghubingzhou"; isConnect = false; isEncrypted = false
+        addItem(withTitle: "Catch penghubingzhou", action: #selector(clickMenuItem(_:)), keyEquivalent: "").view = wifiMenuItemView(frame: NSRect(x: 0, y: 0, width: 285, height: 20))
         ssid = "Catch Hackintosh Tiny Bing"; isConnect = false; isEncrypted = false
-        addItem(withTitle: "Catch Dog", action: #selector(clickMenuItem(_:)), keyEquivalent: "").view = wifiMenuItemView(frame: NSRect(x: 0, y: 0, width: 285, height: 20))
+        addItem(withTitle: "Catch Hackintosh Tiny Bing", action: #selector(clickMenuItem(_:)), keyEquivalent: "").view = wifiMenuItemView(frame: NSRect(x: 0, y: 0, width: 285, height: 20))
         addItem(NSMenuItem.separator())
         addItem(withTitle: "加入其他网络...", action: #selector(clickMenuItem(_:)), keyEquivalent: "").target = self
         addItem(withTitle: "创建网络...", action: #selector(clickMenuItem(_:)), keyEquivalent: "").target = self

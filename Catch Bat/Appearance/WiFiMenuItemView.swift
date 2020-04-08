@@ -23,7 +23,7 @@ class wifiMenuItemView: NSView {
     var signalImage: NSImageView?
     var highlightColor: NSColor?
     var normalColor: NSColor?
-    var mouseOver: Bool = false
+    var isMouseOver: Bool = false
     
     override init(frame: NSRect) {
         super.init(frame: frame)
@@ -80,7 +80,7 @@ class wifiMenuItemView: NSView {
         statusImage?.contentTintColor = highlightColor
         lockImage?.contentTintColor = highlightColor
         signalImage?.contentTintColor = highlightColor
-        mouseOver = true
+        isMouseOver = true
     }
     
     override func mouseExited(with event: NSEvent) {
@@ -90,13 +90,13 @@ class wifiMenuItemView: NSView {
         statusImage?.contentTintColor = normalColor
         lockImage?.contentTintColor = normalColor
         signalImage?.contentTintColor = normalColor
-        mouseOver = false
+        isMouseOver = false
     }
     
     override func mouseUp(with event: NSEvent) {
         menuItemView?.material = .popover
         menuItemView?.isEmphasized = false
-        mouseOver = false // NSWindow pop up could escape mouseExit
+        isMouseOver = false // NSWindow pop up could escape mouseExit
         ssidLabel?.textColor = normalColor
         statusImage?.contentTintColor = normalColor
         lockImage?.contentTintColor = normalColor
@@ -130,7 +130,7 @@ class wifiMenuItemView: NSView {
             highlightColor = NSColor.white
             normalColor = NSColor.black
         }
-        if !mouseOver {
+        if !isMouseOver {
             ssidLabel?.textColor = normalColor
             statusImage?.contentTintColor = normalColor
             lockImage?.contentTintColor = normalColor
