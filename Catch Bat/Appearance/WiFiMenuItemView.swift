@@ -96,6 +96,7 @@ class wifiMenuItemView: NSView {
     override func mouseUp(with event: NSEvent) {
         menuItemView?.material = .popover
         menuItemView?.isEmphasized = false
+        mouseOver = false // NSWindow pop up could escape mouseExit
         ssidLabel?.textColor = normalColor
         statusImage?.contentTintColor = normalColor
         lockImage?.contentTintColor = normalColor
