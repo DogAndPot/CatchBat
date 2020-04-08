@@ -20,10 +20,10 @@
 		F86A8960243CD13300CBABC2 /* TestService.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F86A895F243CD13300CBABC2 /* TestService.hpp */; };
 		F86A8962243CD13400CBABC2 /* TestService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F86A8961243CD13400CBABC2 /* TestService.cpp */; };
 		F86A896E243CD1B500CBABC2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F86A896D243CD1B500CBABC2 /* main.cpp */; };
-		F86A8979243CD50A00CBABC2 /* Api.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F86A8977243CD50A00CBABC2 /* Api.cpp */; };
 		F86A897B243CD6EA00CBABC2 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = F86A8972243CD40800CBABC2 /* Common.h */; };
 		F86A897D243CD72700CBABC2 /* Common.h in Headers */ = {isa = PBXBuildFile; fileRef = F86A8972243CD40800CBABC2 /* Common.h */; };
-		F86A897E243CD73100CBABC2 /* Api.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F86A8978243CD50A00CBABC2 /* Api.hpp */; };
+		F8F6CF0C243D675800965B43 /* Api.h in Headers */ = {isa = PBXBuildFile; fileRef = F8F6CF0A243D675800965B43 /* Api.h */; };
+		F8F6CF0D243D675800965B43 /* Api.c in Sources */ = {isa = PBXBuildFile; fileRef = F8F6CF0B243D675800965B43 /* Api.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,8 +69,9 @@
 		F86A896B243CD1B500CBABC2 /* ClientKit */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ClientKit; sourceTree = BUILT_PRODUCTS_DIR; };
 		F86A896D243CD1B500CBABC2 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		F86A8972243CD40800CBABC2 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
-		F86A8977243CD50A00CBABC2 /* Api.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Api.cpp; sourceTree = "<group>"; };
-		F86A8978243CD50A00CBABC2 /* Api.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Api.hpp; sourceTree = "<group>"; };
+		F8F6CF0A243D675800965B43 /* Api.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Api.h; sourceTree = "<group>"; };
+		F8F6CF0B243D675800965B43 /* Api.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = Api.c; sourceTree = "<group>"; };
+		F8F6CF0E243D67D800965B43 /* IoctlId.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IoctlId.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,8 +161,8 @@
 			isa = PBXGroup;
 			children = (
 				F86A896D243CD1B500CBABC2 /* main.cpp */,
-				F86A8977243CD50A00CBABC2 /* Api.cpp */,
-				F86A8978243CD50A00CBABC2 /* Api.hpp */,
+				F8F6CF0A243D675800965B43 /* Api.h */,
+				F8F6CF0B243D675800965B43 /* Api.c */,
 			);
 			path = ClientKit;
 			sourceTree = "<group>";
@@ -170,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				F86A8972243CD40800CBABC2 /* Common.h */,
+				F8F6CF0E243D67D800965B43 /* IoctlId.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -190,8 +192,8 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F86A897E243CD73100CBABC2 /* Api.hpp in Headers */,
 				F86A897D243CD72700CBABC2 /* Common.h in Headers */,
+				F8F6CF0C243D675800965B43 /* Api.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,7 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F86A8979243CD50A00CBABC2 /* Api.cpp in Sources */,
+				F8F6CF0D243D675800965B43 /* Api.c in Sources */,
 				F86A896E243CD1B500CBABC2 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

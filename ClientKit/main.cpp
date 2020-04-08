@@ -8,7 +8,7 @@
 
 #include <iostream>
 
-#include "Api.hpp"
+#include "Api.h"
 
 int main(int argc, const char * argv[]) {
     // insert code here...

@@ -9,6 +9,7 @@
 #ifndef Common_h
 #define Common_h
 
+#include "IoctlId.h"
 
 
 #endif /* Common_h */
