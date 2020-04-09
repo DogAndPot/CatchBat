@@ -29,7 +29,7 @@ class WiFiPopoverSubview: NSView,NSWindowDelegate, NSTextFieldDelegate{
         view = NSView(frame: NSRect(x: 0, y: 0, width: 450, height: 247))
         icon = NSImageView(frame: NSRect(x: 25, y: 165, width: 64, height: 64))
         title = NSTextField(frame: NSRect(x: 105, y: 210, width: 345, height: 16))
-        passwdLabel = NSTextView(frame: NSRect(x: 128, y: 124, width: 100, height: 21))
+        passwdLabel = NSTextView(frame: NSRect(x: 128, y: 124, width: 100, height: 19))
         WiFiPopoverSubview.passwdInputBox = NSTextField(frame: NSRect(x: 173, y: 124, width: 255, height: 21))
         passwdInputBoxCell = NSTextFieldCell.init()
         WiFiPopoverSubview.passwdInputBox1 = NSSecureTextField(frame: NSRect(x: 173, y: 124, width: 255, height: 21))

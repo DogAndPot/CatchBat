@@ -110,7 +110,7 @@ class wifiMenuItemView: NSView {
         popWindow?.level = .floating
         popWindow?.makeKeyAndOrderFront(self)
         popWindow?.center()
-        statusBar.menu?.cancelTracking()
+        //statusBar.menu?.cancelTracking()
     }
     
     override func viewWillMove(toWindow newWindow: NSWindow?) {
