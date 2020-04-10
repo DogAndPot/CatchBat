@@ -10,9 +10,8 @@ import Foundation
 import Cocoa
 
 class JoinPopWindow:NSWindow, NSTextFieldDelegate {
-    var normalView: NSView?
-    var encryptView1: NSView?
-    var encryptView2: NSView?
+    var view: NSView?
+    var buttonView: NSView?
     var icon: NSImageView?
     var titleLabel: NSTextField?
     var subTitleLabel: NSTextField?
@@ -31,9 +30,8 @@ class JoinPopWindow:NSWindow, NSTextFieldDelegate {
     
     override init(contentRect: NSRect, styleMask style: NSWindow.StyleMask, backing backingStoreType: NSWindow.BackingStoreType, defer flag: Bool) {
         super.init(contentRect: contentRect, styleMask: style, backing: backingStoreType, defer: flag)
-        normalView = NSView(frame: NSRect(x: 0, y: 0, width: 450, height: 247))
-        encryptView1 = NSView(frame: NSRect(x: 0, y: 0, width: 450, height: 295))
-        encryptView2 = NSView(frame: NSRect(x: 0, y: 0, width: 450, height: 323))
+        view = NSView(frame: NSRect(x: 0, y: 0, width: 450, height: 247))
+        buttonView = NSView(frame: NSRect(x: 0, y: 0, width: 450, height: 150))
         icon = NSImageView(frame: NSRect(x: 25, y: 167, width: 64, height: 64))
         titleLabel = NSTextField(frame: NSRect(x: 105, y: 212, width: 345, height: 16))
         subTitleLabel = NSTextField(frame: NSRect(x: 105, y: 200, width: 250, height: 14))
@@ -51,24 +49,28 @@ class JoinPopWindow:NSWindow, NSTextFieldDelegate {
         cancelButton = NSButton(frame: NSRect(x: 269, y: 18, width: 85, height: 22))
         
         icon?.image = NSImage.init(named: "WiFi")
+        view?.addSubview(icon!)
         
         titleLabel?.stringValue = "查找并加入Wi-Fi网络。"
         titleLabel?.drawsBackground = false
         titleLabel?.isBordered = false
         titleLabel?.isSelectable = false
         titleLabel?.font = NSFont.boldSystemFont(ofSize: 13)//systemFont(ofSize: 13).
+        view?.addSubview(titleLabel!)
         
         subTitleLabel?.stringValue = "输入您想要加入的网络的名称和安全性类型。"
         subTitleLabel?.drawsBackground = false
         subTitleLabel?.isBordered = false
         subTitleLabel?.isSelectable = false
         subTitleLabel?.font = NSFont.systemFont(ofSize: 11)
+        view?.addSubview(subTitleLabel!)
         
         ssidLabel?.stringValue = "网络名称："
         ssidLabel?.drawsBackground = false
         ssidLabel?.isBordered = false
         ssidLabel?.isSelectable = false
         ssidLabel?.font = NSFont.systemFont(ofSize: 13)
+        view?.addSubview(ssidLabel!)
         
         ssidBox?.stringValue = ""
         ssidBox?.drawsBackground = true
@@ -76,12 +78,14 @@ class JoinPopWindow:NSWindow, NSTextFieldDelegate {
         ssidBox?.isSelectable = true
         ssidBox?.font = .systemFont(ofSize: 13)
         ssidBox?.delegate = self
+        view?.addSubview(ssidBox!)
         
         securityLabel?.stringValue = "安全性："
         securityLabel?.drawsBackground = false
         securityLabel?.isBordered = false
         securityLabel?.isSelectable = false
         securityLabel?.font = .systemFont(ofSize: 13)
+        view?.addSubview(securityLabel!)
         
         securityPop?.addItem(withTitle: "无")
         securityPop?.menu?.addItem(.separator())
@@ -94,6 +98,7 @@ class JoinPopWindow:NSWindow, NSTextFieldDelegate {
         securityPop?.addItem(withTitle: "WPA/WPA2企业级")
         securityPop?.addItem(withTitle: "WPA2企业级")
         securityPop?.addItem(withTitle: "WPA3企业级")
+        view?.addSubview(securityPop!)
         
         passwdLabel?.string = "密码："
         passwdLabel?.drawsBackground = false
@@ -129,36 +134,39 @@ class JoinPopWindow:NSWindow, NSTextFieldDelegate {
         isShowPasswd?.target = self
         isShowPasswd?.action = #selector(showPasswd(_:))
         isShowPasswd?.isHidden = true
-        contentView?.addSubview(isShowPasswd!)
+        buttonView?.addSubview(isShowPasswd!)
         
         isSave?.setButtonType(.switch)
         isSave?.title = "记住该网络"
         isSave?.target = self
         isSave?.action = #selector(saveWiFi(_:))
+        buttonView?.addSubview(isSave!)
         
         joinButton?.bezelStyle = NSButton.BezelStyle.rounded
         joinButton?.title = "加入"
         joinButton?.target = self
         joinButton?.isEnabled = false
         //joinButton?.action = #selector()
+        buttonView?.addSubview(joinButton!)
         
         cancelButton?.bezelStyle = .rounded
         cancelButton?.title = "取消"
         cancelButton?.target = self
         cancelButton?.action = #selector(cancel(_:))
+        buttonView?.addSubview(cancelButton!)
         
-        normalView?.addSubview(icon!)
-        normalView?.addSubview(titleLabel!)
-        normalView?.addSubview(subTitleLabel!)
-        normalView?.addSubview(ssidLabel!)
-        normalView?.addSubview(ssidBox!)
-        normalView?.addSubview(securityPop!)
-        normalView?.addSubview(securityLabel!)
-        normalView?.addSubview(isSave!)
-        normalView?.addSubview(joinButton!)
-        normalView?.addSubview(cancelButton!)
         
-        contentView = normalView
+        
+        
+        
+        
+        view?.autoresizingMask = .minYMargin
+        buttonView?.autoresizingMask = .maxYMargin
+        
+        
+        preservesContentDuringLiveResize = true
+        contentView?.addSubview(view!)
+        contentView?.addSubview(buttonView!)
         isReleasedWhenClosed = false
         level = .floating
         center()
@@ -185,16 +193,17 @@ class JoinPopWindow:NSWindow, NSTextFieldDelegate {
     
     @objc func saveWiFi(_ sender: Any?) {
         if isSave?.state.rawValue == 0 {
-            
-            setFrame(NSRect(x: frame.minX, y: frame.minY + 48, width: 450, height: 269), display: false, animate: true)
-            normalView?.frame = NSRect(x: 0, y: 0, width: 450, height: 247)
+            isShowPasswd?.isHidden = true
+            let Frame = NSRect(x: frame.minX, y: frame.minY + 48, width: 450, height: 269)
+            setFrame(Frame, display: false, animate: true)
         }
         if isSave?.state.rawValue == 1 {
             
-            //contentView = normalView
-            setFrame(NSRect(x: frame.minX, y: frame.minY - 48, width: 450, height: 317), display: false, animate: true)
-            normalView?.frame = NSRect(x: 0, y: 48, width: 450, height: 247)
+            let Frame = NSRect(x: frame.minX, y: frame.minY - 48, width: 450, height: 317)
+            setFrame(Frame, display: false, animate: true)
+            isShowPasswd?.isHidden = false
         }
+        
     }
     
     @objc func cancel(_ sender: Any?) {
