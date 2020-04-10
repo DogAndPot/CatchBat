@@ -19,19 +19,21 @@ class JoinPopWindow:NSWindow, NSTextFieldDelegate {
     var ssidBox: NSTextField?
     var securityLabel: NSTextField?
     var securityPop: NSPopUpButton?
+    var usernameLabel: NSTextField?
+    var usernameBox: NSTextField?
     var passwdLabel: NSTextView?
     static var passwdInputBox: NSTextField?
     var passwdInputBoxCell: NSTextFieldCell?
     static var passwdInputBox1: NSSecureTextField?
     var isShowPasswd: NSButton?
-    var isSave:NSButton?
+    var isSave: NSButton?
     var joinButton: NSButton?
     var cancelButton: NSButton?
     
     override init(contentRect: NSRect, styleMask style: NSWindow.StyleMask, backing backingStoreType: NSWindow.BackingStoreType, defer flag: Bool) {
         super.init(contentRect: contentRect, styleMask: style, backing: backingStoreType, defer: flag)
         view = NSView(frame: NSRect(x: 0, y: 0, width: 450, height: 247))
-        buttonView = NSView(frame: NSRect(x: 0, y: 0, width: 450, height: 150))
+        buttonView = NSView(frame: NSRect(x: 0, y: 0, width: 450, height: 175))
         icon = NSImageView(frame: NSRect(x: 25, y: 167, width: 64, height: 64))
         titleLabel = NSTextField(frame: NSRect(x: 105, y: 212, width: 345, height: 16))
         subTitleLabel = NSTextField(frame: NSRect(x: 105, y: 200, width: 250, height: 14))
@@ -39,7 +41,9 @@ class JoinPopWindow:NSWindow, NSTextFieldDelegate {
         ssidBox = NSTextField(frame: NSRect(x: 173, y: 132, width: 255, height: 21))
         securityLabel = NSTextField(frame: NSRect(x: 113, y: 103, width: 70, height: 19))
         securityPop = NSPopUpButton(frame: NSRect(x: 171, y: 100, width: 260, height: 26))
-        passwdLabel = NSTextView(frame: NSRect(x: 128, y: 124, width: 100, height: 21))
+        usernameLabel = NSTextField(frame: NSRect(x: 113, y: 150, width: 70, height: 19))
+        usernameBox = NSTextField(frame: NSRect(x: 173, y: 151, width: 255, height: 21))
+        passwdLabel = NSTextView(frame: NSRect(x: 124, y: 121, width: 100, height: 19))
         JoinPopWindow.passwdInputBox = NSTextField(frame: NSRect(x: 173, y: 124, width: 255, height: 21))
         passwdInputBoxCell = NSTextFieldCell.init()
         JoinPopWindow.passwdInputBox1 = NSSecureTextField(frame: NSRect(x: 173, y: 124, width: 255, height: 21))
@@ -98,7 +102,27 @@ class JoinPopWindow:NSWindow, NSTextFieldDelegate {
         securityPop?.addItem(withTitle: "WPA/WPA2企业级")
         securityPop?.addItem(withTitle: "WPA2企业级")
         securityPop?.addItem(withTitle: "WPA3企业级")
+        securityPop?.target = self
+        securityPop?.action = #selector(security(_:))
         view?.addSubview(securityPop!)
+        
+        usernameLabel?.stringValue = "用户名："
+        usernameLabel?.drawsBackground = false
+        usernameLabel?.isBordered = false
+        usernameLabel?.isSelectable = false
+        usernameLabel?.font = .systemFont(ofSize: 13)
+        usernameLabel?.isHidden = true
+        buttonView?.addSubview(usernameLabel!)
+        
+        usernameBox?.stringValue = ""
+        usernameBox?.drawsBackground = true
+        usernameBox?.isBordered = true
+        usernameBox?.isEditable = true
+        usernameBox?.isSelectable = true
+        usernameBox?.font = .systemFont(ofSize: 13)
+        usernameBox?.delegate = self
+        usernameBox?.isHidden = true
+        buttonView?.addSubview(usernameBox!)
         
         passwdLabel?.string = "密码："
         passwdLabel?.drawsBackground = false
@@ -106,7 +130,7 @@ class JoinPopWindow:NSWindow, NSTextFieldDelegate {
         passwdLabel?.isSelectable = false
         passwdLabel?.font = NSFont.systemFont(ofSize: 13)
         passwdLabel?.isHidden = true
-        contentView?.addSubview(passwdLabel!)
+        buttonView?.addSubview(passwdLabel!)
         
         JoinPopWindow.passwdInputBox?.cell = passwdInputBoxCell
         passwdInputBoxCell?.allowedInputSourceLocales = [NSAllRomanInputSourcesLocaleIdentifier]
@@ -118,7 +142,7 @@ class JoinPopWindow:NSWindow, NSTextFieldDelegate {
         JoinPopWindow.passwdInputBox?.font = NSFont.systemFont(ofSize: 13)
         JoinPopWindow.passwdInputBox?.delegate = self
         JoinPopWindow.passwdInputBox?.isHidden = true
-        contentView?.addSubview(JoinPopWindow.passwdInputBox!)
+        buttonView?.addSubview(JoinPopWindow.passwdInputBox!)
         
         JoinPopWindow.passwdInputBox1?.stringValue = ""
         JoinPopWindow.passwdInputBox1?.drawsBackground = true
@@ -127,7 +151,7 @@ class JoinPopWindow:NSWindow, NSTextFieldDelegate {
         JoinPopWindow.passwdInputBox1?.font = NSFont.systemFont(ofSize: 13)
         JoinPopWindow.passwdInputBox1?.delegate = self
         JoinPopWindow.passwdInputBox1?.isHidden = true
-        contentView?.addSubview(JoinPopWindow.passwdInputBox1!)
+        buttonView?.addSubview(JoinPopWindow.passwdInputBox1!)
         
         isShowPasswd?.setButtonType(.switch)
         isShowPasswd?.title = "显示密码"
@@ -155,14 +179,8 @@ class JoinPopWindow:NSWindow, NSTextFieldDelegate {
         cancelButton?.action = #selector(cancel(_:))
         buttonView?.addSubview(cancelButton!)
         
-        
-        
-        
-        
-        
         view?.autoresizingMask = .minYMargin
         buttonView?.autoresizingMask = .maxYMargin
-        
         
         preservesContentDuringLiveResize = true
         contentView?.addSubview(view!)
@@ -172,49 +190,97 @@ class JoinPopWindow:NSWindow, NSTextFieldDelegate {
         center()
     }
     
+    @objc func security(_ sender: Any?) {
+        switch (securityPop?.indexOfSelectedItem)! {
+        case 0:
+            usernameLabel?.isHidden = true
+            usernameBox?.isHidden = true
+            passwdLabel?.isHidden = true
+            JoinPopWindow.passwdInputBox?.isHidden = true
+            JoinPopWindow.passwdInputBox1?.isHidden = true
+            isShowPasswd?.isHidden = true
+            ssidBox?.becomeFirstResponder()
+            if frame.height == 317 {
+                let Frame = NSRect(x: frame.minX, y: frame.minY + 48, width: 450, height: 269)
+                setFrame(Frame, display: false, animate: true)
+            }
+            if frame.height == 345 {
+                let Frame = NSRect(x: frame.minX, y: frame.minY + 76, width: 450, height: 269)
+                setFrame(Frame, display: false, animate: true)
+            }
+        case 2, 3, 4, 5:
+            if frame.height == 269 {
+                let Frame = NSRect(x: frame.minX, y: frame.minY - 48, width: 450, height: 317)
+                setFrame(Frame, display: false, animate: true)
+            }
+            usernameLabel?.isHidden = true
+            usernameBox?.isHidden = true
+            passwdLabel?.isHidden = false
+            JoinPopWindow.passwdInputBox?.isHidden = false
+            JoinPopWindow.passwdInputBox1?.isHidden = true
+            isShowPasswd?.isHidden = false
+            if frame.height == 345 {
+                let Frame = NSRect(x: frame.minX, y: frame.minY + 28, width: 450, height: 317)
+                setFrame(Frame, display: false, animate: true)
+            }
+            JoinPopWindow.passwdInputBox?.becomeFirstResponder()
+        case 7, 8, 9, 10:
+            if frame.height == 269 {
+                let Frame = NSRect(x: frame.minX, y: frame.minY - 76, width: 450, height: 345)
+                setFrame(Frame, display: false, animate: true)
+            }
+            if frame.height == 317 {
+                let Frame = NSRect(x: frame.minX, y: frame.minY - 28, width: 450, height: 345)
+                setFrame(Frame, display: false, animate: true)
+            }
+            usernameLabel?.isHidden = false
+            usernameBox?.isHidden = false
+            passwdLabel?.isHidden = false
+            JoinPopWindow.passwdInputBox?.isHidden = false
+            JoinPopWindow.passwdInputBox1?.isHidden = true
+            isShowPasswd?.isHidden = false
+            usernameBox?.becomeFirstResponder()
+        default:
+            return
+        }
+    }
+    
     @objc func showPasswd(_ sender: Any?) {
         if isShowPasswd?.state.rawValue == 0 {
-            JoinPopWindow.passwdInputBox1?.stringValue = JoinPopWindow.passwdInputBox?.stringValue as! String
+            JoinPopWindow.passwdInputBox1?.stringValue = (JoinPopWindow.passwdInputBox?.stringValue)!
             JoinPopWindow.passwdInputBox?.isHidden = true
             JoinPopWindow.passwdInputBox1?.isHidden = false
             JoinPopWindow.passwdInputBox1?.becomeFirstResponder()
             JoinPopWindow.passwdInputBox1?.selectText(self)
-            JoinPopWindow.passwdInputBox1?.currentEditor()?.selectedRange = NSRange(location: "\(JoinPopWindow.passwdInputBox1)".count, length: 0)
+            JoinPopWindow.passwdInputBox1?.currentEditor()?.selectedRange = NSRange(location: "\((JoinPopWindow.passwdInputBox1)!)".count, length: 0)
         }
         if isShowPasswd?.state.rawValue == 1 {
-            JoinPopWindow.passwdInputBox?.stringValue = JoinPopWindow.passwdInputBox1?.stringValue as! String
+            JoinPopWindow.passwdInputBox?.stringValue = (JoinPopWindow.passwdInputBox1?.stringValue)!
             JoinPopWindow.passwdInputBox?.isHidden = false
             JoinPopWindow.passwdInputBox1?.isHidden = true
             JoinPopWindow.passwdInputBox?.becomeFirstResponder()
             JoinPopWindow.passwdInputBox?.selectText(self)
-            JoinPopWindow.passwdInputBox?.currentEditor()?.selectedRange = NSRange(location: "\(JoinPopWindow.passwdInputBox)".count, length: 0)
+            JoinPopWindow.passwdInputBox?.currentEditor()?.selectedRange = NSRange(location: "\((JoinPopWindow.passwdInputBox)!)".count, length: 0)
         }
     }
     
     @objc func saveWiFi(_ sender: Any?) {
         if isSave?.state.rawValue == 0 {
-            isShowPasswd?.isHidden = true
-            let Frame = NSRect(x: frame.minX, y: frame.minY + 48, width: 450, height: 269)
-            setFrame(Frame, display: false, animate: true)
         }
         if isSave?.state.rawValue == 1 {
-            
-            let Frame = NSRect(x: frame.minX, y: frame.minY - 48, width: 450, height: 317)
-            setFrame(Frame, display: false, animate: true)
-            isShowPasswd?.isHidden = false
         }
         
     }
     
     @objc func cancel(_ sender: Any?) {
-        popWindow?.close()
+        close()
     }
     
     func controlTextDidChange(_ obj: Notification) {
         if JoinPopWindow.passwdInputBox?.isHidden == false {
-            JoinPopWindow.passwdInputBox1?.stringValue = JoinPopWindow.passwdInputBox?.stringValue as! String
+            JoinPopWindow.passwdInputBox1?.stringValue = (JoinPopWindow.passwdInputBox?.stringValue)!
         } else {
-            JoinPopWindow.passwdInputBox?.stringValue = JoinPopWindow.passwdInputBox1?.stringValue as! String
+            JoinPopWindow.passwdInputBox?.stringValue = (JoinPopWindow.passwdInputBox1?.stringValue)!
         }
         if (JoinPopWindow.passwdInputBox1?.stringValue.count)! < 8 && (JoinPopWindow.passwdInputBox?.stringValue.count)! < 8 {
             joinButton?.isEnabled = false

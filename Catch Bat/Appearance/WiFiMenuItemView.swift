@@ -101,7 +101,7 @@ class wifiMenuItemView: NSView {
         statusImage?.contentTintColor = normalColor
         lockImage?.contentTintColor = normalColor
         signalImage?.contentTintColor = normalColor
-        WiFiPopoverSubview.ssid = ssidLabel?.string as! String
+        WiFiPopoverSubview.ssid = (ssidLabel?.string)!
         popWindow?.close()
         popWindow = nil
         popWindow = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 450, height: 247), styleMask: .titled, backing: .buffered, defer: false)

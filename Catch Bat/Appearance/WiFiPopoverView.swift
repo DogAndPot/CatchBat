@@ -107,20 +107,20 @@ class WiFiPopoverSubview: NSView,NSWindowDelegate, NSTextFieldDelegate{
     
     @objc func showPasswd(_ sender: Any?) {
         if isShowPasswd?.state.rawValue == 0 {
-            WiFiPopoverSubview.passwdInputBox1?.stringValue = WiFiPopoverSubview.passwdInputBox?.stringValue as! String
+            WiFiPopoverSubview.passwdInputBox1?.stringValue = (WiFiPopoverSubview.passwdInputBox?.stringValue)!
             WiFiPopoverSubview.passwdInputBox?.isHidden = true
             WiFiPopoverSubview.passwdInputBox1?.isHidden = false
             WiFiPopoverSubview.passwdInputBox1?.becomeFirstResponder()
             WiFiPopoverSubview.passwdInputBox1?.selectText(self)
-            WiFiPopoverSubview.passwdInputBox1?.currentEditor()?.selectedRange = NSRange(location: "\(WiFiPopoverSubview.passwdInputBox1)".count, length: 0)
+            WiFiPopoverSubview.passwdInputBox1?.currentEditor()?.selectedRange = NSRange(location: "\((WiFiPopoverSubview.passwdInputBox1)!)".count, length: 0)
         }
         if isShowPasswd?.state.rawValue == 1 {
-            WiFiPopoverSubview.passwdInputBox?.stringValue = WiFiPopoverSubview.passwdInputBox1?.stringValue as! String
+            WiFiPopoverSubview.passwdInputBox?.stringValue = (WiFiPopoverSubview.passwdInputBox1?.stringValue)!
             WiFiPopoverSubview.passwdInputBox?.isHidden = false
             WiFiPopoverSubview.passwdInputBox1?.isHidden = true
             WiFiPopoverSubview.passwdInputBox?.becomeFirstResponder()
             WiFiPopoverSubview.passwdInputBox?.selectText(self)
-            WiFiPopoverSubview.passwdInputBox?.currentEditor()?.selectedRange = NSRange(location: "\(WiFiPopoverSubview.passwdInputBox)".count, length: 0)
+            WiFiPopoverSubview.passwdInputBox?.currentEditor()?.selectedRange = NSRange(location: "\((WiFiPopoverSubview.passwdInputBox)!)".count, length: 0)
         }
     }
     
@@ -134,9 +134,9 @@ class WiFiPopoverSubview: NSView,NSWindowDelegate, NSTextFieldDelegate{
     
     func controlTextDidChange(_ obj: Notification) {
         if WiFiPopoverSubview.passwdInputBox?.isHidden == false {
-            WiFiPopoverSubview.passwdInputBox1?.stringValue = WiFiPopoverSubview.passwdInputBox?.stringValue as! String
+            WiFiPopoverSubview.passwdInputBox1?.stringValue = (WiFiPopoverSubview.passwdInputBox?.stringValue)!
         } else {
-            WiFiPopoverSubview.passwdInputBox?.stringValue = WiFiPopoverSubview.passwdInputBox1?.stringValue as! String
+            WiFiPopoverSubview.passwdInputBox?.stringValue = (WiFiPopoverSubview.passwdInputBox1?.stringValue)!
         }
         if (WiFiPopoverSubview.passwdInputBox1?.stringValue.count)! < 8 && (WiFiPopoverSubview.passwdInputBox?.stringValue.count)! < 8 {
             joinButton?.isEnabled = false

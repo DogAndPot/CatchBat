@@ -23,9 +23,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         statusBar.button?.image = NSImage.init(named: "AirPortOff")
         statusBar.button?.image?.isTemplate = true
         statusBar.menu = StatusMenu.init(title: "")
-        
-        let joinPop = JoinPopWindow.init(contentRect: NSRect(x: 0, y: 0, width: 450, height: 247), styleMask: .titled, backing: .buffered, defer: false)
-        joinPop.makeKeyAndOrderFront(self)
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

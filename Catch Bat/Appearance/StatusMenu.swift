@@ -89,6 +89,9 @@ class StatusMenu: NSMenu, NSMenuDelegate {
             //timer?.invalidate()
             //timer = nil
             StatusBarIcon.off()
+        case "加入其他网络...":
+            let joinPop = JoinPopWindow.init(contentRect: NSRect(x: 0, y: 0, width: 450, height: 247), styleMask: .titled, backing: .buffered, defer: false)
+            joinPop.makeKeyAndOrderFront(self)
         case "打开网络偏好设置...":
             NSWorkspace.shared.openFile("/System/Library/PreferencePanes/Network.prefPane")
         case "放走Bat":
