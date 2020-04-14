@@ -11,5 +11,8 @@
 
 #include <IOKit/IOKitLib.h>
 #include "Common.h"
+#include <inttypes.h>
+#include <stdlib.h>
+#include <string.h>
 
 #endif /* Api_h */

@@ -18,6 +18,8 @@
 		BCFA32EB2424D2BE00E23603 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFA32EA2424D2BE00E23603 /* AppDelegate.swift */; };
 		BCFA32ED2424D2BF00E23603 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCFA32EC2424D2BF00E23603 /* Assets.xcassets */; };
 		BCFA32F02424D2BF00E23603 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BCFA32EE2424D2BF00E23603 /* MainMenu.xib */; };
+		F84E327824457FAE00D07895 /* ItlNetworkUserClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F84E327624457FAE00D07895 /* ItlNetworkUserClient.cpp */; };
+		F84E327924457FAE00D07895 /* ItlNetworkUserClient.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F84E327724457FAE00D07895 /* ItlNetworkUserClient.hpp */; };
 		F86A8960243CD13300CBABC2 /* TestService.hpp in Headers */ = {isa = PBXBuildFile; fileRef = F86A895F243CD13300CBABC2 /* TestService.hpp */; };
 		F86A8962243CD13400CBABC2 /* TestService.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F86A8961243CD13400CBABC2 /* TestService.cpp */; };
 		F86A896E243CD1B500CBABC2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F86A896D243CD1B500CBABC2 /* main.cpp */; };
@@ -64,6 +66,8 @@
 		BCFA32EF2424D2BF00E23603 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		BCFA32F12424D2BF00E23603 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BCFA32F22424D2BF00E23603 /* Catch_Bat.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Catch_Bat.entitlements; sourceTree = "<group>"; };
+		F84E327624457FAE00D07895 /* ItlNetworkUserClient.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ItlNetworkUserClient.cpp; sourceTree = "<group>"; };
+		F84E327724457FAE00D07895 /* ItlNetworkUserClient.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ItlNetworkUserClient.hpp; sourceTree = "<group>"; };
 		F86A895D243CD13000CBABC2 /* TestService.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestService.kext; sourceTree = BUILT_PRODUCTS_DIR; };
 		F86A895F243CD13300CBABC2 /* TestService.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TestService.hpp; sourceTree = "<group>"; };
 		F86A8961243CD13400CBABC2 /* TestService.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TestService.cpp; sourceTree = "<group>"; };
@@ -156,6 +160,8 @@
 				F86A895F243CD13300CBABC2 /* TestService.hpp */,
 				F86A8961243CD13400CBABC2 /* TestService.cpp */,
 				F86A8963243CD13400CBABC2 /* Info.plist */,
+				F84E327624457FAE00D07895 /* ItlNetworkUserClient.cpp */,
+				F84E327724457FAE00D07895 /* ItlNetworkUserClient.hpp */,
 			);
 			path = TestService;
 			sourceTree = "<group>";
@@ -186,6 +192,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F84E327924457FAE00D07895 /* ItlNetworkUserClient.hpp in Headers */,
 				F86A897B243CD6EA00CBABC2 /* Common.h in Headers */,
 				F86A8960243CD13300CBABC2 /* TestService.hpp in Headers */,
 			);
@@ -338,6 +345,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F84E327824457FAE00D07895 /* ItlNetworkUserClient.cpp in Sources */,
 				F86A8962243CD13400CBABC2 /* TestService.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -6,6 +6,7 @@
 //  Copyright © 2020 lhy. All rights reserved.
 //
 #include "TestService.hpp"
+#include "Common.h"
 
 #define super IOService
 OSDefineMetaClassAndStructors(TestService, IOService)
@@ -27,15 +28,21 @@ IOService* TestService::probe(IOService* provider, SInt32 *score) {
 
 bool TestService::start(IOService *provider) {
     IOLog("Driver start");
-    
     if (!super::start(provider)) {
         IOLog("Super start call failed!");
         return false;
     }
+    setupUserClient();
     return true;
 }
 
 void TestService::stop(IOService *provider) {
     IOLog("Driver stop");
     super::stop(provider);
+}
+
+bool TestService::setupUserClient()
+{
+    
+    return true;
 }

@@ -9,6 +9,7 @@
 #include <IOKit/IOLib.h>
 #include <IOKit/IOLocks.h>
 #include <IOKit/IOService.h>
+#include "ItlNetworkUserClient.hpp"
 
 class TestService : public IOService {
     OSDeclareDefaultStructors(TestService)
@@ -20,4 +21,5 @@ public:
     bool start(IOService *provider) override;
     void stop(IOService *provider) override;
     
+    bool setupUserClient();
 };
