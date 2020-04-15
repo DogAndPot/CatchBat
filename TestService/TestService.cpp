@@ -33,6 +33,7 @@ bool TestService::start(IOService *provider) {
         return false;
     }
     setupUserClient();
+    registerService();
     return true;
 }
 
@@ -43,6 +44,6 @@ void TestService::stop(IOService *provider) {
 
 bool TestService::setupUserClient()
 {
-    
+    setProperty("IOUserClientClass", "ItlNetworkUserClient");
     return true;
 }

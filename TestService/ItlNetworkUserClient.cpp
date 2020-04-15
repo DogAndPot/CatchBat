@@ -2,7 +2,7 @@
 //  ItlNetworkUserClient.cpp
 //  TestService
 //
-//  Created by qcwap on 2020/4/14.
+//  Created by 钟先耀 on 2020/4/14.
 //  Copyright © 2020 lhy. All rights reserved.
 //
 
@@ -11,35 +11,51 @@
 #define super IOUserClient
 OSDefineMetaClassAndStructors( ItlNetworkUserClient, IOUserClient );
 
+const IOExternalMethodDispatch ItlNetworkUserClient::sMethods[IOCTL_ID_MAX] {
+    {sTest, 0, 0, 0, 0},
+};
+
 bool ItlNetworkUserClient::initWithTask(task_t owningTask, void *securityID, UInt32 type, OSDictionary *properties)
 {
     fTask = owningTask;
-    return( super::initWithTask( owningTask, securityID, type, properties ));
+    return super::initWithTask(owningTask, securityID, type, properties);
 }
 
 bool ItlNetworkUserClient::start(IOService *provider)
 {
-    IOLog("ItlNetworkUserClient::start\n");
+    IOLog("start\n");
     if( !super::start( provider ))
-        return( false );
-    
+        return false;
+    fDriver = OSDynamicCast(TestService, provider);
+    if (fDriver == NULL) {
+        return false;
+    }
     return true;
 }
 
 IOReturn ItlNetworkUserClient::clientClose()
 {
+    IOLog("clientClose\n");
     if( !isInactive())
         terminate();
-    return( kIOReturnSuccess );
+    return kIOReturnSuccess;
+}
+
+IOReturn ItlNetworkUserClient::clientDied()
+{
+    IOLog("clientDied\n");
+    return super::clientDied();
 }
 
 void ItlNetworkUserClient::stop(IOService *provider)
 {
+    IOLog("stop\n");
     super::stop( provider );
 }
 
 IOReturn ItlNetworkUserClient::externalMethod(uint32_t selector, IOExternalMethodArguments * arguments, IOExternalMethodDispatch * dispatch, OSObject * target, void * reference)
 {
+    IOLog("externalMethod invoke. selector=%X\n", selector);
     IOReturn err;
     switch (selector) {
         default:
@@ -47,4 +63,10 @@ IOReturn ItlNetworkUserClient::externalMethod(uint32_t selector, IOExternalMetho
             break;
     }
     return err;
+}
+
+IOReturn ItlNetworkUserClient::sTest(OSObject *target, void *reference, IOExternalMethodArguments *arguments)
+{
+    IOLog("%s 阿啊阿啊阿啊\n", __FUNCTION__);
+    return kIOReturnSuccess;
 }
