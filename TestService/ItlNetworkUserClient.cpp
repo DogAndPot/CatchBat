@@ -13,6 +13,7 @@ OSDefineMetaClassAndStructors( ItlNetworkUserClient, IOUserClient );
 
 const IOExternalMethodDispatch ItlNetworkUserClient::sMethods[IOCTL_ID_MAX] {
     {sTest, 0, 0, 0, 0},
+    {sBSSID, 0, 0, 0, 0}
 };
 
 bool ItlNetworkUserClient::initWithTask(task_t owningTask, void *securityID, UInt32 type, OSDictionary *properties)
@@ -68,5 +69,11 @@ IOReturn ItlNetworkUserClient::externalMethod(uint32_t selector, IOExternalMetho
 IOReturn ItlNetworkUserClient::sTest(OSObject *target, void *reference, IOExternalMethodArguments *arguments)
 {
     IOLog("%s 阿啊阿啊阿啊\n", __FUNCTION__);
+    return kIOReturnSuccess;
+}
+
+IOReturn ItlNetworkUserClient::sBSSID(OSObject *target, void *reference, IOExternalMethodArguments *arguments)
+{
+    IOLog("%s 噢噢噢噢噢\n", __FUNCTION__);
     return kIOReturnSuccess;
 }

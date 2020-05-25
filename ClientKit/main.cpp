@@ -7,6 +7,13 @@
 //
 
 #include <iostream>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <sys/file.h>
+#include <sys/sys_domain.h>
+#include <sys/ioctl.h>
+#include <sys/kern_event.h>
+#include <sys/kern_control.h>
 
 #include "Api.h"
 
@@ -16,7 +23,7 @@ IONotificationPortRef MyDriverGetAsyncCompletionPort()
 {
     if (gAsyncNotificationPort != NULL)
         return gAsyncNotificationPort;
- 
+
     gAsyncNotificationPort = IONotificationPortCreate(kIOMasterPortDefault);
     return gAsyncNotificationPort;
 }
@@ -26,7 +33,7 @@ int main(int argc, const char * argv[]) {
     io_iterator_t       iter = 0;
     io_service_t        service = 0;
     kern_return_t       kr;
-    
+
     matchingDict = IOServiceMatching("ItlNetworkUserClient");
     kr = IOServiceGetMatchingServices(kIOMasterPortDefault, matchingDict, &iter);
     if (kr != KERN_SUCCESS)
@@ -36,7 +43,7 @@ int main(int argc, const char * argv[]) {
         task_port_t     owningTask = mach_task_self();
         uint32_t        type = 0;
         io_connect_t    driverConnection;
-        
+
         kr = IOServiceOpen(
                            service,
                            owningTask,
@@ -52,21 +59,21 @@ int main(int argc, const char * argv[]) {
                 runLoopSource = IONotificationPortGetRunLoopSource(notificationPort);
                 CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, kCFRunLoopDefaultMode);
             }
-            
+
             kr = IOConnectCallAsyncScalarMethod(driverConnection, IOCTL_80211_TEST, IONotificationPortGetMachPort(gAsyncNotificationPort), NULL, kIOAsyncCalloutCount, NULL, 1, NULL, NULL);
             printf("IOCTL_80211_TEST - %08x\n", kr);
-            
+
             CFRunLoopRun();
-            
+
             IONotificationPortDestroy(gAsyncNotificationPort);
             gAsyncNotificationPort = NULL;
             IOServiceClose(driverConnection);
         }
-        
+
         IOObjectRelease(service);
     }
     IOObjectRelease(iter);
-    
+
     std::cout << "Hello, World!\n";
     return 0;
 }

@@ -31,6 +31,7 @@ public:
     
 private:
     static IOReturn sTest(OSObject* target, void* reference, IOExternalMethodArguments* arguments);
+    static IOReturn sBSSID(OSObject* target, void* reference, IOExternalMethodArguments* arguments);
     static const IOExternalMethodDispatch sMethods[IOCTL_ID_MAX];
     
 private:

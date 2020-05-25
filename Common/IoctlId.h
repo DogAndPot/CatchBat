@@ -49,4 +49,6 @@ enum IOCTL_IDS {
     IOCTL_ID_MAX
 };
 
+#define SIOCSTEST 0x10086
+
 #endif /* IoctlId_h */
